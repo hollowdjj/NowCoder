@@ -1,17 +1,19 @@
-package nowcoder
+package easy
+
+//翻转链表
 
 type ListNode struct {
-	Val int
+	Val  int
 	Next *ListNode
 }
 
 func ReverseList(pHead *ListNode) *ListNode {
 	var prev *ListNode
 	for pHead != nil {
-		next := pHead.Next    //先把后一个结点保存了
-		pHead.Next = prev	  //修改当前结点后后续结点为当前结点的前一个结点
-		prev = pHead		  //update
-		pHead = next		  //update
+		next := pHead.Next //先把后一个结点保存了
+		pHead.Next = prev  //修改当前结点后后续结点为当前结点的前一个结点
+		prev = pHead       //update
+		pHead = next       //update
 	}
 	return prev
 }
@@ -22,7 +24,7 @@ func TestReverseList() {
 		Next: nil,
 	}
 	temp := pHead
-	for i:=1;i<5;i++ {
+	for i := 1; i < 5; i++ {
 		newNode := &ListNode{
 			Val:  i,
 			Next: nil,
