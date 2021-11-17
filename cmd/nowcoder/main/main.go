@@ -12,5 +12,6 @@ func main() {
 	//easy.TestMaxProfit()
 	//easy.TestTwoSum()
 	//easy.TestMergeList()
-	easy.TestIsValid()
+	//easy.TestIsValid()
+	easy.TestSortList()
 }
