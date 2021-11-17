@@ -10,5 +10,7 @@ func main() {
 	//easy.TestMerge()
 	//easy.TestSubArrayMaxSum()
 	//easy.TestMaxProfit()
-	easy.TestTwoSum()
+	//easy.TestTwoSum()
+	//easy.TestMergeList()
+	easy.TestIsValid()
 }

@@ -28,13 +28,14 @@ func Pop() int {
 需要注意的是，在Go中由于没有提供stack，所以使用一个数组就可以解题。最正确的做法应该是需要去模拟栈先入后
 出的性质，然后再解题。
 */
-type stack []int    //定义一个stack类型
+
+type StackInt []int //定义一个stack类型
 type Queue struct { //两个stack构成的队列
-	stack1 stack
-	stack2 stack
+	stack1 StackInt
+	stack2 StackInt
 }
 
-func (s *stack) Pop() int {
+func (s *StackInt) Pop() int {
 	//先入后出
 	if len([]int(*s)) == 0 {
 		panic("Empty queue")
@@ -44,7 +45,7 @@ func (s *stack) Pop() int {
 	return res
 }
 
-func (s *stack) Push(node int) {
+func (s *StackInt) Push(node int) {
 	*s = append(*s, node)
 }
 
