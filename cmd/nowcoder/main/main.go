@@ -13,5 +13,7 @@ func main() {
 	//easy.TestTwoSum()
 	//easy.TestMergeList()
 	//easy.TestIsValid()
-	easy.TestSortList()
+	//easy.TestSortList()
+	//easy.TestDeleteDuplicates()
+	easy.TestFindKthToTail()
 }
