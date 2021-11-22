@@ -38,3 +38,25 @@ func TestReverseKGroup(t *testing.T) {
 		}
 	}
 }
+
+func TestRemoveNthFromEnd(t *testing.T) {
+	data := []struct {
+		source  []int
+		n       int
+		wanting []int
+	}{
+		{[]int{1, 2}, 1, []int{1}},
+		{[]int{1, 2, 3, 4, 5}, 0, []int{1, 2, 3, 4, 5}},
+		{[]int{1, 2, 3, 4, 5}, 1, []int{1, 2, 3, 4}},
+		{[]int{1, 2, 3, 4, 5}, 2, []int{1, 2, 3, 5}},
+		{[]int{1, 2, 3, 4, 5}, 5, []int{2, 3, 4, 5}},
+	}
+
+	for _, v := range data {
+		head := utility.SliceToList(v.source)
+		res := utility.ListToSlice(RemoveNthFromEnd(head, v.n))
+		if !utility.EqualSliceInt(res, v.wanting) {
+			t.Errorf("RemoveNthFromEnd(%v) = %v", v.source, res)
+		}
+	}
+}
