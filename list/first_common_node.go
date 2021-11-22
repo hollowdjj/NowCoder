@@ -1,11 +1,13 @@
-package easy
+package list
+
+import "nowcoder/utility"
 
 /*
 输入两个无环的单向链表，找出它们的第一个公共结点，如果没有公共节点则返回空。
 要求：空间复杂度 O(1)，时间复杂度O(n)
 */
 
-func FindFirstCommonNode(pHead1 *ListNode, pHead2 *ListNode) *ListNode {
+func FindFirstCommonNode(pHead1 *utility.ListNode, pHead2 *utility.ListNode) *utility.ListNode {
 	/*
 		这道题的解法比较巧妙，之前没见过的话，感觉很难想到。设链表1的头结点到公共结点的
 		距离为a，公共结点到尾结点的距离为c;同样对链表2有距离b,c。那么显然有：

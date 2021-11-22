@@ -1,8 +1,10 @@
-package easy
+package list
+
+import "nowcoder/utility"
 
 //给一个长度为n链表，若其中包含环，请找出该链表的环的入口结点，否则，返回null。
 
-func EntryNodeOfLoop(pHead *ListNode) *ListNode {
+func EntryNodeOfLoop(pHead *utility.ListNode) *utility.ListNode {
 	slow, fast := pHead, pHead
 	for {
 		//快指针一次走两步，慢指针一次走一步，最终会在环中的某一点相遇

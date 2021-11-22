@@ -1,4 +1,6 @@
-package easy
+package list
+
+import "nowcoder/utility"
 
 /*
 删除给出链表中的重复元素（链表中元素从小到大有序），使链表中的所有元素都只出现一次
@@ -10,7 +12,7 @@ package easy
 进阶：空间复杂度 O(1)，时间复杂度 O(n)
 */
 
-func deleteDuplicates(head *ListNode) *ListNode {
+func deleteDuplicates(head *utility.ListNode) *utility.ListNode {
 	//双指针法，left和right分别表示重复序列的第一个元素和最后一个元素的后一个元素
 	if head == nil {
 		return nil
@@ -29,6 +31,6 @@ func deleteDuplicates(head *ListNode) *ListNode {
 }
 
 func TestDeleteDuplicates() {
-	head := GenList([]int{1, 1, 2})
-	PrintList(deleteDuplicates(head))
+	head := utility.SliceToList([]int{1, 1, 2})
+	utility.PrintList(deleteDuplicates(head))
 }

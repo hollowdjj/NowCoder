@@ -1,6 +1,6 @@
-package easy
+package list
 
-import "fmt"
+import "nowcoder/utility"
 
 /*
 输入两个递增的链表，单个链表的长度为n，合并这两个链表并使新链表中的节点仍然是递增排序的。
@@ -8,8 +8,8 @@ import "fmt"
 如输入{1,5,9},{2,3,4,7}时，合并后的链表为{1,2,3,4,5,7,9}
 */
 
-func MergeList(pHead1 *ListNode, pHead2 *ListNode) *ListNode {
-	start := &ListNode{
+func MergeList(pHead1 *utility.ListNode, pHead2 *utility.ListNode) *utility.ListNode {
+	start := &utility.ListNode{
 		Val:  0,
 		Next: nil,
 	}
@@ -29,34 +29,5 @@ func MergeList(pHead1 *ListNode, pHead2 *ListNode) *ListNode {
 }
 
 func TestMergeList() {
-	PrintList(MergeList(GenList(nil), GenList([]int{2, 3, 4, 7})))
-}
-
-func GenList(slice []int) *ListNode {
-	n := len(slice)
-	if n < 1 {
-		return nil
-	}
-	pHead := &ListNode{
-		Val:  slice[0],
-		Next: nil,
-	}
-	temp := pHead
-	for i := 1; i < n; i++ {
-		temp.Next = &ListNode{
-			Val:  slice[i],
-			Next: nil,
-		}
-		temp = temp.Next
-	}
-	return pHead
-}
-
-func PrintList(pHead *ListNode) {
-	fmt.Print("[")
-	for pHead != nil {
-		fmt.Printf(" %d ", pHead.Val)
-		pHead = pHead.Next
-	}
-	fmt.Println("]")
+	utility.PrintList(MergeList(utility.SliceToList(nil), utility.SliceToList([]int{2, 3, 4, 7})))
 }

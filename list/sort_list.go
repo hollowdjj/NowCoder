@@ -1,11 +1,13 @@
-package easy
+package list
+
+import "nowcoder/utility"
 
 /*
 给定一个节点数为n的无序单链表，对其按升序排序。
 要求：空间复杂度 O(n)，时间复杂度 O(nlogn)
 */
 
-func sortInList(head *ListNode) *ListNode {
+func sortInList(head *utility.ListNode) *utility.ListNode {
 	//使用一个额外的数组存储链表的所有值，即空间复杂度为O(n)
 	var array []int
 	for head != nil {
@@ -14,7 +16,7 @@ func sortInList(head *ListNode) *ListNode {
 	}
 	//对这个数组使用归并排序，即时间复杂度为O(nlogn)
 	array = MergeSort(array)
-	return GenList(array)
+	return utility.SliceToList(array)
 }
 
 //对两已排序的数组中的元素进行排序并返回排序后的数组
@@ -55,6 +57,6 @@ func MergeSort(slice []int) []int {
 }
 
 func TestSortList() {
-	head := GenList([]int{-1, 0, -2})
-	PrintList(sortInList(head))
+	head := utility.SliceToList([]int{-1, 0, -2})
+	utility.PrintList(sortInList(head))
 }
