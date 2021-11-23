@@ -1,12 +1,21 @@
 package utility
 
 import (
+	"bytes"
 	"fmt"
 )
 
 type ListNode struct {
 	Val  int
 	Next *ListNode
+}
+
+func (head *ListNode) Print() string {
+	str := bytes.Buffer{}
+	for head != nil {
+		str.WriteString(fmt.Sprintf("%d ", head.Val))
+	}
+	return str.String()
 }
 
 func SliceToList(slice []int) *ListNode {
@@ -58,4 +67,41 @@ func EqualSliceInt(a, b []int) bool {
 	}
 
 	return true
+}
+
+func EqualList(head1, head2 *ListNode) bool {
+	for head1 != nil && head2 != nil {
+		if head1.Val != head2.Val {
+			return false
+		}
+		head1, head2 = head1.Next, head2.Next
+	}
+	if head1 != nil || head2 != nil {
+		return false
+	}
+
+	return true
+}
+
+type StackInt []int //定义一个stack类型
+
+func (s *StackInt) Pop() int {
+	//先入后出
+	if len([]int(*s)) == 0 {
+		panic("Empty queue")
+	}
+	res := (*s)[len(*s)-1]
+	*s = (*s)[0 : len(*s)-1]
+	return res
+}
+
+func (s *StackInt) Push(node int) {
+	*s = append(*s, node)
+}
+
+func (s *StackInt) Empty() bool {
+	if len([]int(*s)) == 0 {
+		return true
+	}
+	return false
 }

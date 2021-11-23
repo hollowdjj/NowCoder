@@ -60,3 +60,27 @@ func TestRemoveNthFromEnd(t *testing.T) {
 		}
 	}
 }
+
+func TestAddInList(t *testing.T) {
+	data := []struct {
+		list1 []int
+		list2 []int
+		sum   []int
+	}{
+		{[]int{9, 3, 7}, []int{6, 3}, []int{1, 0, 0, 0}},
+		{[]int{0}, []int{6, 3}, []int{6, 3}},
+	}
+
+	for _, v := range data {
+		head1 := utility.SliceToList(v.list1)
+		head2 := utility.SliceToList(v.list2)
+		resList1 := AddInList(head1, head2)
+		if res := utility.EqualList(resList1, utility.SliceToList(v.sum)); !res {
+			t.Errorf("AddInList(%v,%v) = %v", v.list1, v.list2, utility.ListToSlice(resList1))
+		}
+		resList2 := AddInListAdvanced(head1, head2)
+		if res := utility.EqualList(resList2, utility.SliceToList(v.sum)); !res {
+			t.Errorf("AddInListAdvanced(%v,%v) = %v", v.list1, v.list2, utility.ListToSlice(resList2))
+		}
+	}
+}
