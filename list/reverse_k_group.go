@@ -56,3 +56,38 @@ func ReversePartOfList(head, tail *utility.ListNode) {
 	}
 	originHead.Next = guard
 }
+
+func ReverseKGroupAdvanced(head *utility.ListNode, k int) *utility.ListNode {
+	if k == 1 {
+		return head
+	}
+
+	//哑巴节点
+	dummy := &utility.ListNode{
+		Val:  -1,
+		Next: head,
+	}
+	prev, nHead := dummy, dummy.Next //要翻转的子区间的前驱节点和子区间的头节点
+	count := 1                       //计数
+	for head != nil {
+		if count%k == 0 {
+			//翻转[nHead,head]子区间。即从nHead.Next开始，每遍历一个节点，就将其交换到prev.Next
+			for i := 1; i < k; i++ {
+				//将nHead.Next交换到prev.Next
+				next := nHead.Next     //保存nHead.Next
+				nHead.Next = next.Next //让nHead连接nHead.Next.Next
+				next.Next = prev.Next  //原nHead.Next连接至prev后面
+				prev.Next = next
+			}
+			//nHead此时指向当前区间的未元素，需要更新以指向下一个子区间的首元素
+			prev = nHead
+			nHead = nHead.Next
+			head = nHead
+		} else {
+			head = head.Next
+		}
+		count++
+	}
+
+	return dummy.Next
+}
