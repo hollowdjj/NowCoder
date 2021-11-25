@@ -37,8 +37,3 @@ func FindKthToTailAdvanced(pHead *utility.ListNode, k int) *utility.ListNode {
 	}
 	return slow
 }
-
-func TestFindKthToTail() {
-	pHead := utility.SliceToList([]int{1, 2, 3, 4, 5})
-	utility.PrintList(FindKthToTail(pHead, 3))
-}

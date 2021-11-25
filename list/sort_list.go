@@ -55,8 +55,3 @@ func MergeSort(slice []int) []int {
 	mid := len(slice) / 2
 	return mergeArray(MergeSort(slice[0:mid]), MergeSort(slice[mid:]))
 }
-
-func TestSortList() {
-	head := utility.SliceToList([]int{-1, 0, -2})
-	utility.PrintList(sortInList(head))
-}

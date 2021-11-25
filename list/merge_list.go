@@ -27,7 +27,3 @@ func MergeList(pHead1 *utility.ListNode, pHead2 *utility.ListNode) *utility.List
 
 	return start.Next
 }
-
-func TestMergeList() {
-	utility.PrintList(MergeList(utility.SliceToList(nil), utility.SliceToList([]int{2, 3, 4, 7})))
-}

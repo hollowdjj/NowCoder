@@ -10,12 +10,38 @@ type ListNode struct {
 	Next *ListNode
 }
 
-func (head *ListNode) Print() string {
-	str := bytes.Buffer{}
-	for head != nil {
-		str.WriteString(fmt.Sprintf("%d ", head.Val))
+func (head *ListNode) Equal(another *ListNode) bool {
+	for head != nil && another != nil {
+		if head.Val != another.Val {
+			return false
+		}
+		head, another = head.Next, another.Next
 	}
+	if head != nil || another != nil {
+		return false
+	}
+
+	return true
+}
+
+func (head *ListNode) String() string {
+	str := bytes.Buffer{}
+	str.WriteRune('[')
+	for head != nil {
+		str.WriteString(fmt.Sprintf(" %d ", head.Val))
+		head = head.Next
+	}
+	str.WriteRune(']')
 	return str.String()
+}
+
+func (head *ListNode) Slice() []int {
+	var res []int
+	for head != nil {
+		res = append(res, head.Val)
+		head = head.Next
+	}
+	return res
 }
 
 func SliceToList(slice []int) *ListNode {
@@ -38,22 +64,22 @@ func SliceToList(slice []int) *ListNode {
 	return pHead
 }
 
-func PrintList(pHead *ListNode) {
-	fmt.Print("[")
-	for pHead != nil {
-		fmt.Printf(" %d ", pHead.Val)
-		pHead = pHead.Next
-	}
-	fmt.Println("]")
-}
+//func PrintList(pHead *ListNode) {
+//	fmt.Print("[")
+//	for pHead != nil {
+//		fmt.Printf(" %d ", pHead.Val)
+//		pHead = pHead.Next
+//	}
+//	fmt.Println("]")
+//}
 
-func ListToSlice(head *ListNode) (res []int) {
-	for head != nil {
-		res = append(res, head.Val)
-		head = head.Next
-	}
-	return
-}
+//func ListToSlice(head *ListNode) (res []int) {
+//	for head != nil {
+//		res = append(res, head.Val)
+//		head = head.Next
+//	}
+//	return
+//}
 
 func EqualSliceInt(a, b []int) bool {
 	if len(a) != len(b) {
@@ -69,19 +95,19 @@ func EqualSliceInt(a, b []int) bool {
 	return true
 }
 
-func EqualList(head1, head2 *ListNode) bool {
-	for head1 != nil && head2 != nil {
-		if head1.Val != head2.Val {
-			return false
-		}
-		head1, head2 = head1.Next, head2.Next
-	}
-	if head1 != nil || head2 != nil {
-		return false
-	}
-
-	return true
-}
+//func EqualList(head1, head2 *ListNode) bool {
+//	for head1 != nil && head2 != nil {
+//		if head1.Val != head2.Val {
+//			return false
+//		}
+//		head1, head2 = head1.Next, head2.Next
+//	}
+//	if head1 != nil || head2 != nil {
+//		return false
+//	}
+//
+//	return true
+//}
 
 type StackInt []int //定义一个stack类型
 

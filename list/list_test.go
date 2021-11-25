@@ -34,16 +34,16 @@ func TestReverseKGroup(t *testing.T) {
 	}
 
 	for _, v := range data {
-		if res := ReverseKGroup(utility.SliceToList(v.source), v.k); !utility.EqualSliceInt(utility.ListToSlice(res), v.wanting) {
-			t.Errorf("ReverseKGroup(%q) = %q", v.source, utility.ListToSlice(res))
+		if res := ReverseKGroup(utility.SliceToList(v.source), v.k); !utility.EqualSliceInt(res.Slice(), v.wanting) {
+			t.Errorf("ReverseKGroup(%q) = %q", v.source, res.Slice())
 		}
 	}
 
 	for _, v := range data {
 		head := utility.SliceToList(v.source)
 		res := ReverseKGroupAdvanced(head, v.k)
-		if !utility.EqualList(res, utility.SliceToList(v.wanting)) {
-			t.Errorf("ReverseKGroupAdvanced(%v,%d)=%v", v.source, v.k, utility.ListToSlice(res))
+		if !res.Equal(utility.SliceToList(v.wanting)) {
+			t.Errorf("ReverseKGroupAdvanced(%v,%d)=%v", v.source, v.k, res.Slice())
 		}
 	}
 }
@@ -63,7 +63,7 @@ func TestRemoveNthFromEnd(t *testing.T) {
 
 	for _, v := range data {
 		head := utility.SliceToList(v.source)
-		res := utility.ListToSlice(RemoveNthFromEnd(head, v.n))
+		res := RemoveNthFromEnd(head, v.n).Slice()
 		if !utility.EqualSliceInt(res, v.wanting) {
 			t.Errorf("RemoveNthFromEnd(%v) = %v", v.source, res)
 		}
@@ -84,12 +84,12 @@ func TestAddInList(t *testing.T) {
 		head1 := utility.SliceToList(v.list1)
 		head2 := utility.SliceToList(v.list2)
 		resList1 := AddInList(head1, head2)
-		if res := utility.EqualList(resList1, utility.SliceToList(v.sum)); !res {
-			t.Errorf("AddInList(%v,%v) = %v", v.list1, v.list2, utility.ListToSlice(resList1))
+		if !resList1.Equal(utility.SliceToList(v.sum)) {
+			t.Errorf("AddInList(%v,%v) = %v", v.list1, v.list2, resList1.Slice())
 		}
 		resList2 := AddInListAdvanced(head1, head2)
-		if res := utility.EqualList(resList2, utility.SliceToList(v.sum)); !res {
-			t.Errorf("AddInListAdvanced(%v,%v) = %v", v.list1, v.list2, utility.ListToSlice(resList2))
+		if !resList2.Equal(utility.SliceToList(v.sum)) {
+			t.Errorf("AddInListAdvanced(%v,%v) = %v", v.list1, v.list2, resList2.Slice())
 		}
 	}
 }
@@ -110,8 +110,25 @@ func TestReverseBetween(t *testing.T) {
 	for _, v := range data {
 		source := utility.SliceToList(v.source)
 		wanting := utility.SliceToList(v.wanting)
-		if res := ReverseBetween(source, v.m, v.n); !utility.EqualList(res, wanting) {
-			t.Errorf("ReverseBetween(%v,%d,%d) = %v", v.source, v.m, v.n, utility.ListToSlice(res))
+		if res := ReverseBetween(source, v.m, v.n); !res.Equal(wanting) {
+			t.Errorf("ReverseBetween(%v,%d,%d) = %v", v.source, v.m, v.n, res.Slice())
+		}
+	}
+}
+
+func TestDeleteDuplicatesII(t *testing.T) {
+	data := []struct {
+		source  []int
+		wanting []int
+	}{
+		{[]int{1, 2, 3, 3, 4, 4, 5}, []int{1, 2, 5}},
+	}
+
+	for _, v := range data {
+		head := utility.SliceToList(v.source)
+		res := DeleteDuplicatesII(head)
+		if !res.Equal(utility.SliceToList(v.wanting)) {
+			t.Errorf("DeleteDuplicatesII(%v)=%s", v.source, res)
 		}
 	}
 }

@@ -29,8 +29,3 @@ func deleteDuplicates(head *utility.ListNode) *utility.ListNode {
 
 	return head
 }
-
-func TestDeleteDuplicates() {
-	head := utility.SliceToList([]int{1, 1, 2})
-	utility.PrintList(deleteDuplicates(head))
-}
