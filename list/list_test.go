@@ -149,3 +149,24 @@ func TestOddEvenList(t *testing.T) {
 		}
 	}
 }
+
+func TestReorderListAdvanced(t *testing.T) {
+	data := []struct {
+		source  []int
+		wanting []int
+	}{
+		{[]int{}, []int{}},
+		{[]int{1}, []int{1}},
+		{[]int{1, 2}, []int{1, 2}},
+		{[]int{1, 2, 3, 4}, []int{1, 4, 2, 3}},
+		{[]int{1, 2, 3, 4, 5}, []int{1, 5, 2, 4, 3}},
+	}
+
+	for _, v := range data {
+		head := utility.SliceToList(v.source)
+		ReorderListAdvanced(head)
+		if !head.Equal(utility.SliceToList(v.wanting)) {
+			t.Errorf("ReorderListAdvanced(%v)=%s", v.source, head)
+		}
+	}
+}
