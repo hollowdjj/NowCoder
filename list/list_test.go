@@ -170,3 +170,39 @@ func TestReorderListAdvanced(t *testing.T) {
 		}
 	}
 }
+
+func TestYsf(t *testing.T) {
+	data := []struct {
+		m, n    int
+		wanting int
+	}{
+		{2, 5, 3},
+	}
+
+	for _, v := range data {
+		if res := Ysf(v.m, v.n); res != v.wanting {
+			t.Errorf("Ysf(%v,%v)=%v", v.m, v.n, res)
+		}
+	}
+
+	data1 := []struct {
+		source  []int
+		m       int
+		wanting int
+	}{
+		{[]int{1, 2, 3, 4, 5}, 2, 3},
+		{[]int{1}, 1, 1},
+	}
+
+	for _, v := range data1 {
+		head := utility.SliceToList(v.source)
+		nHead := head
+		for nHead.Next != nil {
+			nHead = nHead.Next
+		}
+		nHead.Next = head
+		if res := YsfByList(head, v.m).Val; res != v.wanting {
+			t.Errorf("YsfByList(%d,%d)=%d", v.source[len(v.source)-1], v.m, res)
+		}
+	}
+}
