@@ -1,7 +1,6 @@
 package list
 
 import (
-	"fmt"
 	"nowcoder/utility"
 )
 
@@ -36,7 +35,7 @@ func YsfByList(head *utility.ListNode, m int) *utility.ListNode {
 	}
 	count := 1
 	prev := head
-	temp := head
+	//temp := head
 	for {
 		if count%m == 0 {
 			//删除当前链表节点
@@ -53,6 +52,6 @@ func YsfByList(head *utility.ListNode, m int) *utility.ListNode {
 		prev = head
 		head = head.Next
 	}
-	fmt.Println(temp.Val)
+	//fmt.Println(temp.Val)
 	return head
 }

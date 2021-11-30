@@ -206,3 +206,124 @@ func TestYsf(t *testing.T) {
 		}
 	}
 }
+
+func TestPartition(t *testing.T) {
+	data := []struct {
+		source  []int
+		x       int
+		wanting []int
+	}{
+		{[]int{1, 4, 3, 2, 5, 2}, 3, []int{1, 2, 2, 4, 3, 5}},
+		{[]int{1, 2, 3, 4, 1}, 5, []int{1, 2, 3, 4, 1}},
+		{[]int{}, 5, []int{}},
+	}
+
+	for _, v := range data {
+		head := utility.SliceToList(v.source)
+		newHead := Partition(head, v.x)
+		if !newHead.Equal(utility.SliceToList(v.wanting)) {
+			t.Errorf("Partition(%s,%d)=%s", head, v.x, newHead)
+		}
+	}
+}
+
+func TestSwapLinkedPair(t *testing.T) {
+	data := []struct {
+		source  []int
+		wanting []int
+	}{
+		{[]int{}, []int{}},
+		{[]int{1}, []int{1}},
+		{[]int{1, 2, 3}, []int{2, 1, 3}},
+		{[]int{1, 2, 3, 4}, []int{2, 1, 4, 3}},
+	}
+
+	for _, v := range data {
+		head := utility.SliceToList(v.source)
+		res := SwapLinkedPair(head)
+		if !res.Equal(utility.SliceToList(v.wanting)) {
+			t.Errorf("SwapLinkedPair(%v)=%s", v.source, res)
+		}
+	}
+}
+
+func TestPlusOne(t *testing.T) {
+	data := []struct {
+		source  []int
+		wanting []int
+	}{
+		{[]int{1, 2, 3}, []int{1, 2, 4}},
+		{[]int{1, 9}, []int{2, 0}},
+		{[]int{9}, []int{1, 0}},
+		{[]int{}, []int{}},
+	}
+
+	for _, v := range data {
+		head := utility.SliceToList(v.source)
+		res := PlusOne(head)
+		if !res.Equal(utility.SliceToList(v.wanting)) {
+			t.Errorf("PlusOne(%v)=%s", v.source, res)
+		}
+	}
+}
+
+func TestSortLinkedList(t *testing.T) {
+	data := []struct {
+		source  []int
+		wanting []int
+	}{
+		{[]int{1, 3, 2, 2, 3, 1}, []int{1, 1, 2, 2, 3, 3}},
+	}
+
+	for _, v := range data {
+		head := utility.SliceToList(v.source)
+		res := SortLinkedList(head)
+		if !res.Equal(utility.SliceToList(v.wanting)) {
+			t.Errorf("SortLinkedList(%v)=%s", v.source, res)
+		}
+	}
+}
+
+func TestMergeList(t *testing.T) {
+	data := []struct {
+		source1 []int
+		source2 []int
+		wanting []int
+	}{
+		{[]int{1, 2, 3}, []int{1, 2, 3}, []int{1, 1, 2, 2, 3, 3}},
+		{[]int{1}, []int{2}, []int{1, 2}},
+		{[]int{}, []int{1}, []int{1}},
+		{[]int{1}, []int{}, []int{1}},
+	}
+
+	for _, v := range data {
+		head1 := utility.SliceToList(v.source1)
+		head2 := utility.SliceToList(v.source2)
+		res := MergeList(head1, head2)
+		if !res.Equal(utility.SliceToList(v.wanting)) {
+			t.Errorf("MergeList(%v,%v)=%s", v.source1, v.source2, res)
+		}
+	}
+}
+
+func TestRotateLinkedList(t *testing.T) {
+	data := []struct {
+		source  []int
+		k       int
+		wanting []int
+	}{
+		{[]int{}, 2, []int{}},
+		{[]int{1, 2, 3, 4, 5}, 2, []int{4, 5, 1, 2, 3}},
+		{[]int{1, 2, 3, 4, 5}, 5, []int{1, 2, 3, 4, 5}},
+		{[]int{1, 2, 3, 4, 5}, 6, []int{5, 1, 2, 3, 4}},
+		{[]int{1, 2, 3, 4, 5}, 7, []int{4, 5, 1, 2, 3}},
+	}
+
+	for _, v := range data {
+		head := utility.SliceToList(v.source)
+		res := RotateLinkedList(head, v.k)
+		if !res.Equal(utility.SliceToList(v.wanting)) {
+			t.Errorf("RotateLinkedList(%v,%d)=%s", v.source, v.k, res)
+		}
+	}
+}

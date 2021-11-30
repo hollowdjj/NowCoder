@@ -14,20 +14,3 @@ func ReverseList(pHead *utility.ListNode) *utility.ListNode {
 	}
 	return prev
 }
-
-func TestReverseList() {
-	pHead := &utility.ListNode{
-		Val:  0,
-		Next: nil,
-	}
-	temp := pHead
-	for i := 1; i < 5; i++ {
-		newNode := &utility.ListNode{
-			Val:  i,
-			Next: nil,
-		}
-		temp.Next = newNode
-		temp = newNode
-	}
-	ReverseList(pHead)
-}

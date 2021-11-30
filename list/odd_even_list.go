@@ -19,7 +19,7 @@ func OddEvenList(head *utility.ListNode) *utility.ListNode {
 		head = head.Next
 	}
 	//查询并分别生成奇偶链表
-	dummyOdd, dummyEven := &utility.ListNode{-1, nil}, &utility.ListNode{-1, nil}
+	dummyOdd, dummyEven := &utility.ListNode{Val: -1}, &utility.ListNode{Val: -1}
 	tempOdd, tempEven := dummyOdd, dummyEven
 	for i := 1; i < len(slice); i++ {
 		if i%2 == 0 {

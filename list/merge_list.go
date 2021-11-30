@@ -8,22 +8,26 @@ import "nowcoder/utility"
 如输入{1,5,9},{2,3,4,7}时，合并后的链表为{1,2,3,4,5,7,9}
 */
 
-func MergeList(pHead1 *utility.ListNode, pHead2 *utility.ListNode) *utility.ListNode {
-	start := &utility.ListNode{
-		Val:  0,
-		Next: nil,
-	}
-	temp := start //哨兵节点
-	for pHead1 == nil && pHead2 == nil {
-		if pHead1 != nil && (pHead2 == nil || pHead1.Val <= pHead2.Val) {
-			temp.Next = pHead1
-			pHead1 = pHead1.Next
+//MergeList 合并两个递增的链表
+func MergeList(head1 *utility.ListNode, head2 *utility.ListNode) *utility.ListNode {
+	nHead1, nHead2 := head1, head2
+	dummy := &utility.ListNode{Val: -1}
+	temp := dummy
+	for nHead1 != nil && nHead2 != nil {
+		if nHead1.Val <= nHead2.Val {
+			temp.Next = nHead1
+			nHead1 = nHead1.Next
 		} else {
-			temp.Next = pHead2
-			pHead2 = pHead2.Next
+			temp.Next = nHead2
+			nHead2 = nHead2.Next
 		}
 		temp = temp.Next
 	}
+	if nHead1 != nil {
+		temp.Next = nHead1
+	} else {
+		temp.Next = nHead2
+	}
 
-	return start.Next
+	return dummy.Next
 }
