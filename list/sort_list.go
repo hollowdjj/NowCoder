@@ -7,7 +7,8 @@ import "nowcoder/utility"
 要求：空间复杂度 O(n)，时间复杂度 O(nlogn)
 */
 
-func sortInList(head *utility.ListNode) *utility.ListNode {
+//SortInList 升序排序列表元素
+func SortInList(head *utility.ListNode) *utility.ListNode {
 	//使用一个额外的数组存储链表的所有值，即空间复杂度为O(n)
 	var array []int
 	for head != nil {

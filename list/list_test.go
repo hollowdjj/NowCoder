@@ -448,6 +448,26 @@ func TestSortLinkedList(t *testing.T) {
 	}
 }
 
+func TestSortInList(t *testing.T) {
+	data := []struct {
+		source  []int
+		wanting []int
+	}{
+		{[]int{}, []int{}},
+		{[]int{1}, []int{1}},
+		{[]int{2, 1}, []int{1, 2}},
+		{[]int{1, 2, 5, 1}, []int{1, 1, 2, 5}},
+	}
+
+	for _, v := range data {
+		head := utility.SliceToList(v.source)
+		res := SortInList(head)
+		if !res.Equal(utility.SliceToList(v.wanting)) {
+			t.Errorf("SortInList(%v)=%s", v.source, res)
+		}
+	}
+}
+
 func TestYsf(t *testing.T) {
 	data := []struct {
 		m, n    int
