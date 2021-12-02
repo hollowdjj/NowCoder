@@ -12,6 +12,7 @@ import (
 需要牢牢记住。
 */
 
+//ReverseBetween 链表区间翻转
 func ReverseBetween(head *utility.ListNode, m int, n int) *utility.ListNode {
 	//哑巴节点
 	dummy := &utility.ListNode{
