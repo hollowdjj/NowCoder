@@ -319,29 +319,23 @@ func TestRemoveNthFromEnd(t *testing.T) {
 	}
 }
 
-func TestReverseKGroup(t *testing.T) {
+func TestReorderList(t *testing.T) {
 	data := []struct {
 		source  []int
-		k       int
 		wanting []int
 	}{
-		{[]int{1, 2, 3, 4, 5}, 2, []int{2, 1, 4, 3, 5}},
-		{[]int{}, 2, []int{}},
-		{[]int{1, 2}, 1, []int{1, 2}},
-		{[]int{1, 2, 3}, 3, []int{3, 2, 1}},
-	}
-
-	for _, v := range data {
-		if res := ReverseKGroup(utility.SliceToList(v.source), v.k); !utility.EqualSliceInt(res.Slice(), v.wanting) {
-			t.Errorf("ReverseKGroup(%q) = %q", v.source, res.Slice())
-		}
+		{[]int{}, []int{}},
+		{[]int{1}, []int{1}},
+		{[]int{1, 2}, []int{1, 2}},
+		{[]int{1, 2, 3, 4}, []int{1, 4, 2, 3}},
+		{[]int{1, 2, 3, 4, 5}, []int{1, 5, 2, 4, 3}},
 	}
 
 	for _, v := range data {
 		head := utility.SliceToList(v.source)
-		res := ReverseKGroupAdvanced(head, v.k)
-		if !res.Equal(utility.SliceToList(v.wanting)) {
-			t.Errorf("ReverseKGroupAdvanced(%v,%d)=%v", v.source, v.k, res.Slice())
+		ReorderList(head)
+		if !head.Equal(utility.SliceToList(v.wanting)) {
+			t.Errorf("ReorderList(%v)=%s", v.source, head)
 		}
 	}
 }
@@ -368,23 +362,29 @@ func TestReverseBetween(t *testing.T) {
 	}
 }
 
-func TestReorderListAdvanced(t *testing.T) {
+func TestReverseKGroup(t *testing.T) {
 	data := []struct {
 		source  []int
+		k       int
 		wanting []int
 	}{
-		{[]int{}, []int{}},
-		{[]int{1}, []int{1}},
-		{[]int{1, 2}, []int{1, 2}},
-		{[]int{1, 2, 3, 4}, []int{1, 4, 2, 3}},
-		{[]int{1, 2, 3, 4, 5}, []int{1, 5, 2, 4, 3}},
+		{[]int{1, 2, 3, 4, 5}, 2, []int{2, 1, 4, 3, 5}},
+		{[]int{}, 2, []int{}},
+		{[]int{1, 2}, 1, []int{1, 2}},
+		{[]int{1, 2, 3}, 3, []int{3, 2, 1}},
+	}
+
+	for _, v := range data {
+		if res := ReverseKGroup(utility.SliceToList(v.source), v.k); !utility.EqualSliceInt(res.Slice(), v.wanting) {
+			t.Errorf("ReverseKGroup(%q) = %q", v.source, res.Slice())
+		}
 	}
 
 	for _, v := range data {
 		head := utility.SliceToList(v.source)
-		ReorderListAdvanced(head)
-		if !head.Equal(utility.SliceToList(v.wanting)) {
-			t.Errorf("ReorderListAdvanced(%v)=%s", v.source, head)
+		res := ReverseKGroupAdvanced(head, v.k)
+		if !res.Equal(utility.SliceToList(v.wanting)) {
+			t.Errorf("ReverseKGroupAdvanced(%v,%d)=%v", v.source, v.k, res.Slice())
 		}
 	}
 }

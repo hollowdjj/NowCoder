@@ -11,11 +11,8 @@ import "nowcoder/utility"
 进阶：空间复杂度O(1),时间复杂度O(n)
 */
 
+//ReorderList 重排链表
 func ReorderList(head *utility.ListNode) {
-
-}
-
-func ReorderListAdvanced(head *utility.ListNode) {
 	if head == nil || head.Next == nil || head.Next.Next == nil {
 		return
 	}
