@@ -214,6 +214,28 @@ func TestMergeKLists(t *testing.T) {
 	}
 }
 
+func TestMergeList(t *testing.T) {
+	data := []struct {
+		source1 []int
+		source2 []int
+		wanting []int
+	}{
+		{[]int{1, 2, 3}, []int{1, 2, 3}, []int{1, 1, 2, 2, 3, 3}},
+		{[]int{1}, []int{2}, []int{1, 2}},
+		{[]int{}, []int{1}, []int{1}},
+		{[]int{1}, []int{}, []int{1}},
+	}
+
+	for _, v := range data {
+		head1 := utility.SliceToList(v.source1)
+		head2 := utility.SliceToList(v.source2)
+		res := MergeList(head1, head2)
+		if !res.Equal(utility.SliceToList(v.wanting)) {
+			t.Errorf("MergeList(%v,%v)=%s", v.source1, v.source2, res)
+		}
+	}
+}
+
 func TestReverseKGroup(t *testing.T) {
 	data := []struct {
 		source  []int
@@ -432,28 +454,6 @@ func TestSortLinkedList(t *testing.T) {
 		res := SortLinkedList(head)
 		if !res.Equal(utility.SliceToList(v.wanting)) {
 			t.Errorf("SortLinkedList(%v)=%s", v.source, res)
-		}
-	}
-}
-
-func TestMergeList(t *testing.T) {
-	data := []struct {
-		source1 []int
-		source2 []int
-		wanting []int
-	}{
-		{[]int{1, 2, 3}, []int{1, 2, 3}, []int{1, 1, 2, 2, 3, 3}},
-		{[]int{1}, []int{2}, []int{1, 2}},
-		{[]int{}, []int{1}, []int{1}},
-		{[]int{1}, []int{}, []int{1}},
-	}
-
-	for _, v := range data {
-		head1 := utility.SliceToList(v.source1)
-		head2 := utility.SliceToList(v.source2)
-		res := MergeList(head1, head2)
-		if !res.Equal(utility.SliceToList(v.wanting)) {
-			t.Errorf("MergeList(%v,%v)=%s", v.source1, v.source2, res)
 		}
 	}
 }

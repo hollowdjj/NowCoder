@@ -8,7 +8,7 @@ import "nowcoder/utility"
 如输入{1,5,9},{2,3,4,7}时，合并后的链表为{1,2,3,4,5,7,9}
 */
 
-//MergeList 合并两个递增的链表
+//MergeList 合并两个递增的链表。
 func MergeList(head1 *utility.ListNode, head2 *utility.ListNode) *utility.ListNode {
 	nHead1, nHead2 := head1, head2
 	dummy := &utility.ListNode{Val: -1}
