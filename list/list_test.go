@@ -409,6 +409,28 @@ func TestReverseList(t *testing.T) {
 	}
 }
 
+func TestRotateLinkedList(t *testing.T) {
+	data := []struct {
+		source  []int
+		k       int
+		wanting []int
+	}{
+		{[]int{}, 2, []int{}},
+		{[]int{1, 2, 3, 4, 5}, 2, []int{4, 5, 1, 2, 3}},
+		{[]int{1, 2, 3, 4, 5}, 5, []int{1, 2, 3, 4, 5}},
+		{[]int{1, 2, 3, 4, 5}, 6, []int{5, 1, 2, 3, 4}},
+		{[]int{1, 2, 3, 4, 5}, 7, []int{4, 5, 1, 2, 3}},
+	}
+
+	for _, v := range data {
+		head := utility.SliceToList(v.source)
+		res := RotateLinkedList(head, v.k)
+		if !res.Equal(utility.SliceToList(v.wanting)) {
+			t.Errorf("RotateLinkedList(%v,%d)=%s", v.source, v.k, res)
+		}
+	}
+}
+
 func TestYsf(t *testing.T) {
 	data := []struct {
 		m, n    int
@@ -478,28 +500,6 @@ func TestSortLinkedList(t *testing.T) {
 		res := SortLinkedList(head)
 		if !res.Equal(utility.SliceToList(v.wanting)) {
 			t.Errorf("SortLinkedList(%v)=%s", v.source, res)
-		}
-	}
-}
-
-func TestRotateLinkedList(t *testing.T) {
-	data := []struct {
-		source  []int
-		k       int
-		wanting []int
-	}{
-		{[]int{}, 2, []int{}},
-		{[]int{1, 2, 3, 4, 5}, 2, []int{4, 5, 1, 2, 3}},
-		{[]int{1, 2, 3, 4, 5}, 5, []int{1, 2, 3, 4, 5}},
-		{[]int{1, 2, 3, 4, 5}, 6, []int{5, 1, 2, 3, 4}},
-		{[]int{1, 2, 3, 4, 5}, 7, []int{4, 5, 1, 2, 3}},
-	}
-
-	for _, v := range data {
-		head := utility.SliceToList(v.source)
-		res := RotateLinkedList(head, v.k)
-		if !res.Equal(utility.SliceToList(v.wanting)) {
-			t.Errorf("RotateLinkedList(%v,%d)=%s", v.source, v.k, res)
 		}
 	}
 }

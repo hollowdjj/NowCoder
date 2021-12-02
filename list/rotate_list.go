@@ -8,6 +8,7 @@ import "nowcoder/utility"
 数据范围：链表中节点数满足 0<=n<=1000    0<=k<=10^9
 */
 
+//RotateLinkedList 旋转链表
 func RotateLinkedList(head *utility.ListNode, k int) *utility.ListNode {
 	if head == nil {
 		return nil
