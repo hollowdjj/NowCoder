@@ -8,6 +8,7 @@ import "nowcoder/utility"
 要求：时间复杂度 O(nlogn)
 */
 
+//MergeKLists 合并k个升序链表
 func MergeKLists(lists []*utility.ListNode) *utility.ListNode {
 	n := len(lists)
 	if n == 0 {

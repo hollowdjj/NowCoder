@@ -191,6 +191,29 @@ func TestFindKthToTail(t *testing.T) {
 	}
 }
 
+func TestMergeKLists(t *testing.T) {
+	data := []struct {
+		source  [][]int
+		wanting []int
+	}{
+		{[][]int{}, []int{}},
+		{[][]int{{1, 2, 3}}, []int{1, 2, 3}},
+		{[][]int{{1, 2, 3}, {4, 5, 6}}, []int{1, 2, 3, 4, 5, 6}},
+		{[][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}, []int{1, 2, 3, 4, 5, 6, 7, 8, 9}},
+	}
+
+	for _, v := range data {
+		lists := make([]*utility.ListNode, len(v.source))
+		for i := 0; i < len(lists); i++ {
+			lists[i] = utility.SliceToList(v.source[i])
+		}
+		res := MergeKLists(lists)
+		if !res.Equal(utility.SliceToList(v.wanting)) {
+			t.Errorf("MergeKLists(%v)=%s", v.source, res)
+		}
+	}
+}
+
 func TestReverseKGroup(t *testing.T) {
 	data := []struct {
 		source  []int
@@ -453,29 +476,6 @@ func TestRotateLinkedList(t *testing.T) {
 		res := RotateLinkedList(head, v.k)
 		if !res.Equal(utility.SliceToList(v.wanting)) {
 			t.Errorf("RotateLinkedList(%v,%d)=%s", v.source, v.k, res)
-		}
-	}
-}
-
-func TestMergeKLists(t *testing.T) {
-	data := []struct {
-		source  [][]int
-		wanting []int
-	}{
-		{[][]int{}, []int{}},
-		{[][]int{{1, 2, 3}}, []int{1, 2, 3}},
-		{[][]int{{1, 2, 3}, {4, 5, 6}}, []int{1, 2, 3, 4, 5, 6}},
-		{[][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}, []int{1, 2, 3, 4, 5, 6, 7, 8, 9}},
-	}
-
-	for _, v := range data {
-		lists := make([]*utility.ListNode, len(v.source))
-		for i := 0; i < len(lists); i++ {
-			lists[i] = utility.SliceToList(v.source[i])
-		}
-		res := MergeKLists(lists)
-		if !res.Equal(utility.SliceToList(v.wanting)) {
-			t.Errorf("MergeKLists(%v)=%s", v.source, res)
 		}
 	}
 }
