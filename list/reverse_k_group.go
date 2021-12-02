@@ -57,6 +57,7 @@ func ReversePartOfList(head, tail *utility.ListNode) {
 	originHead.Next = guard
 }
 
+//ReverseKGroupAdvanced 将链表的节点每k个一组进行翻转
 func ReverseKGroupAdvanced(head *utility.ListNode, k int) *utility.ListNode {
 	if k == 1 {
 		return head
