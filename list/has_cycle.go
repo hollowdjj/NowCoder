@@ -4,8 +4,8 @@ import "nowcoder/utility"
 
 //判断链表是否有环，要求空间复杂度O(1)时间复杂度O(n)
 
-//hasCycleFast 速度较快的解法，但缺点在于会修改节点中的值，循环次数=2*环长 + 链表非环部分的长度
-func hasCycleFast(head *utility.ListNode) bool {
+//HasCycleFast 速度较快的解法，但缺点在于会修改节点中的值，循环次数=2*环长 + 链表非环部分的长度
+func HasCycleFast(head *utility.ListNode) bool {
 	for {
 		if head == nil {
 			return false
@@ -28,10 +28,10 @@ func hasCycleFast(head *utility.ListNode) bool {
 }
 
 /*
-hasCycleClassic 经典快慢指针解法。快慢指针会在环中的某一点相遇。因为一旦有环，就可以视为
+HasCycleClassic 经典快慢指针解法。快慢指针会在环中的某一点相遇。因为一旦有环，就可以视为
 快指针在追赶慢指针，而快指针每次多走一步，因此一定能追上。
 */
-func hasCycleClassic(head *utility.ListNode) bool {
+func HasCycleClassic(head *utility.ListNode) bool {
 	slow, fast := head, head
 
 	for {
@@ -52,14 +52,4 @@ func hasCycleClassic(head *utility.ListNode) bool {
 			return true
 		}
 	}
-}
-
-func TestHasCycle() {
-
-	pHead := &utility.ListNode{
-		Val:  1,
-		Next: nil,
-	}
-	pHead.Next = pHead
-	hasCycleFast(pHead)
 }

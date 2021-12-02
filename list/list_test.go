@@ -126,6 +126,29 @@ func TestFindFirstCommonNode(t *testing.T) {
 	}
 }
 
+func TestHasCycle(t *testing.T) {
+	data := []struct {
+		source  []int
+		k       int
+		wanting bool
+	}{
+		{[]int{1, 2}, 1, true},
+		{[]int{1, 2, 3, 4}, 2, true},
+		{[]int{1, 2, 3, 4}, 1, true},
+		{[]int{1, 2, 3, 4}, -1, false},
+	}
+
+	for _, v := range data {
+		head := utility.SliceToLoopList(v.source, v.k)
+		if res := HasCycleFast(head); res != v.wanting {
+			t.Errorf("HasCycleFast(%v,%d)=%t", v.source, v.k, res)
+		}
+		if res := HasCycleClassic(head); res != v.wanting {
+			t.Errorf("HasCycleClassic(%v,%d)=%t", v.source, v.k, res)
+		}
+	}
+}
+
 func TestIsPail(t *testing.T) {
 	data := []struct {
 		source  []int

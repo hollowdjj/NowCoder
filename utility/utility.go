@@ -90,14 +90,16 @@ func SliceToList(slice []int) *ListNode {
 	return pHead
 }
 
-//SliceToLoopList 将链表的最后一个元素与k个元素相连形成一个有环链表
+//SliceToLoopList 将链表的最后一个元素与k个元素相连形成一个有环链表。k小于1时无环
 func SliceToLoopList(slice []int, k int) *ListNode {
 	if len(slice) == 0 {
 		return nil
 	}
+	//k小于1时无环
 	if k < 1 {
-		panic("k should not less than 1")
+		return SliceToList(slice)
 	}
+
 	var nodes []*ListNode
 	head := &ListNode{Val: slice[0]}
 	temp := head
