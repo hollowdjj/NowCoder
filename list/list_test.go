@@ -169,6 +169,28 @@ func TestIsPail(t *testing.T) {
 	}
 }
 
+func TestFindKthToTail(t *testing.T) {
+	data := []struct {
+		source  []int
+		k       int
+		wanting int
+	}{
+		{[]int{1, 2, 3, 4, 5}, 1, 5},
+		{[]int{1, 2, 3, 4, 5}, 2, 4},
+		{[]int{1, 2, 3, 4, 5}, 5, 1},
+	}
+
+	for _, v := range data {
+		head := utility.SliceToList(v.source)
+		if res := FindKthToTail(head, v.k).Val; res != v.wanting {
+			t.Errorf("FindKthToTail(%v,%v)=%v", v.source, v.k, res)
+		}
+		if res := FindKthToTailAdvanced(head, v.k).Val; res != v.wanting {
+			t.Errorf("FindKthToTail(%v,%v)=%v", v.source, v.k, res)
+		}
+	}
+}
+
 func TestReverseKGroup(t *testing.T) {
 	data := []struct {
 		source  []int
