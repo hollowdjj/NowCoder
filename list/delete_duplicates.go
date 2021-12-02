@@ -12,7 +12,8 @@ import "nowcoder/utility"
 进阶：空间复杂度 O(1)，时间复杂度 O(n)
 */
 
-func deleteDuplicates(head *utility.ListNode) *utility.ListNode {
+//DeleteDuplicates 删除有序链表中的重复元素
+func DeleteDuplicates(head *utility.ListNode) *utility.ListNode {
 	//双指针法，left和right分别表示重复序列的第一个元素和最后一个元素的后一个元素
 	if head == nil {
 		return nil
@@ -20,10 +21,11 @@ func deleteDuplicates(head *utility.ListNode) *utility.ListNode {
 
 	left, right := head, head.Next
 	for right != nil {
+		//只有在左右指针的指向的元素的值不同时，左指针才移动
 		if left.Val != right.Val {
 			left = left.Next
 		}
-		right = right.Next
+		right = right.Next //右指针始终移动
 		left.Next = right
 	}
 

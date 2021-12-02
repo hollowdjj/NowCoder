@@ -5,6 +5,28 @@ import (
 	"testing"
 )
 
+func TestDeleteDuplicates(t *testing.T) {
+	data := []struct {
+		source  []int
+		wanting []int
+	}{
+		{[]int{}, []int{}},
+		{[]int{1}, []int{1}},
+		{[]int{1, 2}, []int{1, 2}},
+		{[]int{1, 1}, []int{1}},
+		{[]int{1, 2, 2, 3, 4, 4, 5}, []int{1, 2, 3, 4, 5}},
+		{[]int{1, 1, 2, 2, 3, 3, 4}, []int{1, 2, 3, 4}},
+	}
+
+	for _, v := range data {
+		head := utility.SliceToList(v.source)
+		res := DeleteDuplicates(head)
+		if !res.Equal(utility.SliceToList(v.wanting)) {
+			t.Errorf("DeleteDuplicates(%v)=%s", v.source, res)
+		}
+	}
+}
+
 func TestIsPail(t *testing.T) {
 	data := []struct {
 		source  []int
