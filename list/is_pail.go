@@ -6,8 +6,8 @@ import "nowcoder/utility"
 给定一个链表，判断该链表是否是一个回文结构，即该链表的正逆序是否完全一致
 */
 
-//时间复杂度O(n)，空间复杂度O(n)
-func isPail(head *utility.ListNode) bool {
+//IsPail 使用额外数组判断链表是否是一个回文结构。
+func IsPail(head *utility.ListNode) bool {
 	//将链表的值存放到一个切片中
 	var s []int
 	for head != nil {
@@ -26,7 +26,8 @@ func isPail(head *utility.ListNode) bool {
 	return true
 }
 
-func isPailAdvanced(head *utility.ListNode) bool {
+//IsPailAdvanced 不适用额外数组判断链表是否是一个回文结构
+func IsPailAdvanced(head *utility.ListNode) bool {
 	/*
 		首先找到链表的中间节点。找到链表中间节点的方法比较巧妙，利用的是快慢指针。慢指针一次走
 		一步，快指针一次走两步。当快指针走到链表的最后一个节点时，慢指针刚好指向中间节点。当链

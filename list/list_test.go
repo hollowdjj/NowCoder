@@ -157,10 +157,14 @@ func TestIsPail(t *testing.T) {
 		{[]int{1, 2, 2, 1}, true},
 		{[]int{1, 2, 3, 2, 1}, true},
 		{[]int{1, 2, 3}, false},
+		{[]int{1}, true},
 	}
 	for _, v := range data {
-		if res := isPailAdvanced(utility.SliceToList(v.source)); res != v.wanting {
-			t.Errorf("isPailAdvanced(%v) = %v", v.source, res)
+		if res := IsPailAdvanced(utility.SliceToList(v.source)); res != v.wanting {
+			t.Errorf("IsPailAdvanced(%v) = %v", v.source, res)
+		}
+		if res := IsPail(utility.SliceToList(v.source)); res != v.wanting {
+			t.Errorf("IsPail(%v) = %v", v.source, res)
 		}
 	}
 }
