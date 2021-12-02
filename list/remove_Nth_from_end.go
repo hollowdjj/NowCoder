@@ -8,6 +8,7 @@ import "nowcoder/utility"
 备注: 题目保证n一定是有效的
 */
 
+//RemoveNthFromEnd 删除链表倒数第n个节点
 func RemoveNthFromEnd(head *utility.ListNode, n int) *utility.ListNode {
 	if n == 0 {
 		return head

@@ -297,6 +297,28 @@ func TestPlusOne(t *testing.T) {
 	}
 }
 
+func TestRemoveNthFromEnd(t *testing.T) {
+	data := []struct {
+		source  []int
+		n       int
+		wanting []int
+	}{
+		{[]int{1, 2}, 1, []int{1}},
+		{[]int{1, 2, 3, 4, 5}, 0, []int{1, 2, 3, 4, 5}},
+		{[]int{1, 2, 3, 4, 5}, 1, []int{1, 2, 3, 4}},
+		{[]int{1, 2, 3, 4, 5}, 2, []int{1, 2, 3, 5}},
+		{[]int{1, 2, 3, 4, 5}, 5, []int{2, 3, 4, 5}},
+	}
+
+	for _, v := range data {
+		head := utility.SliceToList(v.source)
+		res := RemoveNthFromEnd(head, v.n).Slice()
+		if !utility.EqualSliceInt(res, v.wanting) {
+			t.Errorf("RemoveNthFromEnd(%v) = %v", v.source, res)
+		}
+	}
+}
+
 func TestReverseKGroup(t *testing.T) {
 	data := []struct {
 		source  []int
@@ -320,28 +342,6 @@ func TestReverseKGroup(t *testing.T) {
 		res := ReverseKGroupAdvanced(head, v.k)
 		if !res.Equal(utility.SliceToList(v.wanting)) {
 			t.Errorf("ReverseKGroupAdvanced(%v,%d)=%v", v.source, v.k, res.Slice())
-		}
-	}
-}
-
-func TestRemoveNthFromEnd(t *testing.T) {
-	data := []struct {
-		source  []int
-		n       int
-		wanting []int
-	}{
-		{[]int{1, 2}, 1, []int{1}},
-		{[]int{1, 2, 3, 4, 5}, 0, []int{1, 2, 3, 4, 5}},
-		{[]int{1, 2, 3, 4, 5}, 1, []int{1, 2, 3, 4}},
-		{[]int{1, 2, 3, 4, 5}, 2, []int{1, 2, 3, 5}},
-		{[]int{1, 2, 3, 4, 5}, 5, []int{2, 3, 4, 5}},
-	}
-
-	for _, v := range data {
-		head := utility.SliceToList(v.source)
-		res := RemoveNthFromEnd(head, v.n).Slice()
-		if !utility.EqualSliceInt(res, v.wanting) {
-			t.Errorf("RemoveNthFromEnd(%v) = %v", v.source, res)
 		}
 	}
 }
