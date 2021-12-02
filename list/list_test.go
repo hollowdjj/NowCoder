@@ -236,6 +236,27 @@ func TestMergeList(t *testing.T) {
 	}
 }
 
+func TestOddEvenList(t *testing.T) {
+	data := []struct {
+		source  []int
+		wanting []int
+	}{
+		{[]int{1}, []int{1}},
+		{[]int{1, 2}, []int{1, 2}},
+		{[]int{1, 2, 3}, []int{1, 3, 2}},
+		{[]int{1, 2, 3, 4}, []int{1, 3, 2, 4}},
+		{[]int{1, 2, 3, 4, 5, 6}, []int{1, 3, 5, 2, 4, 6}},
+	}
+
+	for _, v := range data {
+		head := utility.SliceToList(v.source)
+		newHead := OddEvenList(head)
+		if !newHead.Equal(utility.SliceToList(v.wanting)) {
+			t.Errorf("OddEvenList(%v)=%s", v.source, newHead)
+		}
+	}
+}
+
 func TestReverseKGroup(t *testing.T) {
 	data := []struct {
 		source  []int
@@ -303,23 +324,6 @@ func TestReverseBetween(t *testing.T) {
 		wanting := utility.SliceToList(v.wanting)
 		if res := ReverseBetween(source, v.m, v.n); !res.Equal(wanting) {
 			t.Errorf("ReverseBetween(%v,%d,%d) = %v", v.source, v.m, v.n, res.Slice())
-		}
-	}
-}
-
-func TestOddEvenList(t *testing.T) {
-	data := []struct {
-		source  []int
-		wanting []int
-	}{
-		{[]int{1, 2, 3, 4, 5, 6}, []int{1, 3, 5, 2, 4, 6}},
-	}
-
-	for _, v := range data {
-		head := utility.SliceToList(v.source)
-		newHead := OddEvenList(head)
-		if !newHead.Equal(utility.SliceToList(v.wanting)) {
-			t.Errorf("OddEvenList(%v)=%s", v.source, newHead)
 		}
 	}
 }
