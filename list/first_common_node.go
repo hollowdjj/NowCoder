@@ -7,6 +7,7 @@ import "nowcoder/utility"
 要求：空间复杂度 O(1)，时间复杂度O(n)
 */
 
+//FindFirstCommonNode 找到两个无环单向链表的公共节点
 func FindFirstCommonNode(pHead1 *utility.ListNode, pHead2 *utility.ListNode) *utility.ListNode {
 	/*
 		这道题的解法比较巧妙，之前没见过的话，感觉很难想到。设链表1的头结点到公共结点的
@@ -17,7 +18,6 @@ func FindFirstCommonNode(pHead1 *utility.ListNode, pHead2 *utility.ListNode) *ut
 	*/
 	head1, head2 := pHead1, pHead2
 	for pHead1 != pHead2 {
-
 		if pHead1 == nil {
 			pHead1 = head2
 		} else {

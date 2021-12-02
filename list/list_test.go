@@ -1,9 +1,35 @@
 package list
 
 import (
+	"math/rand"
 	"nowcoder/utility"
 	"testing"
+	"time"
 )
+
+func TestAddInList(t *testing.T) {
+	data := []struct {
+		list1 []int
+		list2 []int
+		sum   []int
+	}{
+		{[]int{9, 3, 7}, []int{6, 3}, []int{1, 0, 0, 0}},
+		{[]int{0}, []int{6, 3}, []int{6, 3}},
+	}
+
+	for _, v := range data {
+		head1 := utility.SliceToList(v.list1)
+		head2 := utility.SliceToList(v.list2)
+		resList1 := AddInList(head1, head2)
+		if !resList1.Equal(utility.SliceToList(v.sum)) {
+			t.Errorf("AddInList(%v,%v) = %v", v.list1, v.list2, resList1.Slice())
+		}
+		resList2 := AddInListAdvanced(head1, head2)
+		if !resList2.Equal(utility.SliceToList(v.sum)) {
+			t.Errorf("AddInListAdvanced(%v,%v) = %v", v.list1, v.list2, resList2.Slice())
+		}
+	}
+}
 
 func TestDeleteDuplicates(t *testing.T) {
 	data := []struct {
@@ -49,6 +75,34 @@ func TestDeleteDuplicatesII(t *testing.T) {
 		}
 		if !res1.Equal(utility.SliceToList(v.wanting)) {
 			t.Errorf("DeleteDuplicatesIIV2(%v)=%s", v.source, res1)
+		}
+	}
+}
+
+func TestFindFirstCommonNode(t *testing.T) {
+
+	r := rand.New(rand.NewSource(time.Now().UnixNano()))
+	target := &utility.ListNode{Val: r.Intn(100) + 20}
+
+	data := []struct {
+		source1 []int
+		source2 []int
+		k1, k2  int
+		wanting *utility.ListNode
+	}{
+		{[]int{1, 2, 3, 4}, []int{5, 6, 7, 8}, r.Intn(10), r.Intn(10), target},
+	}
+
+	limit := r.Intn(1000)
+	for i := 0; i < limit; i++ {
+		for _, v := range data {
+			head1 := utility.SliceToList(v.source1)
+			head2 := utility.SliceToList(v.source2)
+			head1 = utility.InsertKth(head1, target, v.k1)
+			head2 = utility.InsertKth(head2, target, v.k2)
+			if res := FindFirstCommonNode(head1, head2); res != target {
+				t.Errorf("FindFirstCommonNode(%s,%s)=%v", head1, head2, res)
+			}
 		}
 	}
 }
@@ -114,30 +168,6 @@ func TestRemoveNthFromEnd(t *testing.T) {
 		res := RemoveNthFromEnd(head, v.n).Slice()
 		if !utility.EqualSliceInt(res, v.wanting) {
 			t.Errorf("RemoveNthFromEnd(%v) = %v", v.source, res)
-		}
-	}
-}
-
-func TestAddInList(t *testing.T) {
-	data := []struct {
-		list1 []int
-		list2 []int
-		sum   []int
-	}{
-		{[]int{9, 3, 7}, []int{6, 3}, []int{1, 0, 0, 0}},
-		{[]int{0}, []int{6, 3}, []int{6, 3}},
-	}
-
-	for _, v := range data {
-		head1 := utility.SliceToList(v.list1)
-		head2 := utility.SliceToList(v.list2)
-		resList1 := AddInList(head1, head2)
-		if !resList1.Equal(utility.SliceToList(v.sum)) {
-			t.Errorf("AddInList(%v,%v) = %v", v.list1, v.list2, resList1.Slice())
-		}
-		resList2 := AddInListAdvanced(head1, head2)
-		if !resList2.Equal(utility.SliceToList(v.sum)) {
-			t.Errorf("AddInListAdvanced(%v,%v) = %v", v.list1, v.list2, resList2.Slice())
 		}
 	}
 }

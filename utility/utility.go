@@ -44,6 +44,31 @@ func (head *ListNode) Slice() []int {
 	return res
 }
 
+//InsertKth 将target插入到以head为头结点的链表的第k个元素后面，如链表长度小于等于k
+//则插入到最后面。若k等于0，则表示插入到最前面，k小于0则不会发生任何插入
+func InsertKth(head, target *ListNode, k int) *ListNode {
+	if k < 0 || head == nil {
+		return head
+	}
+
+	dummy := &ListNode{Val: -1, Next: head}
+	count, nHead := 0, dummy
+	for nHead.Next != nil {
+		if count == k {
+			next := nHead.Next
+			nHead.Next = target
+			target.Next = next
+			return dummy.Next
+		}
+		nHead = nHead.Next
+		count++
+	}
+
+	nHead.Next = target
+	target.Next = nil
+	return dummy.Next
+}
+
 //SliceToList 将slice转换成链表。若slice为空或者nil时，返回nil
 func SliceToList(slice []int) *ListNode {
 	n := len(slice)
