@@ -79,6 +79,25 @@ func TestDeleteDuplicatesII(t *testing.T) {
 	}
 }
 
+func TestEntryNodeOfLoop(t *testing.T) {
+	data := []struct {
+		source  []int
+		k       int
+		wanting int
+	}{
+		{[]int{1, 2}, 1, 1},
+		{[]int{1, 2, 3, 4}, 2, 2},
+		{[]int{1, 2, 3, 4}, 1, 1},
+	}
+
+	for _, v := range data {
+		head := utility.SliceToLoopList(v.source, v.k)
+		if res := EntryNodeOfLoop(head).Val; res != v.wanting {
+			t.Errorf("EntryNodeOfLoop(%v,%d)=%d", v.source, v.k, res)
+		}
+	}
+}
+
 func TestFindFirstCommonNode(t *testing.T) {
 
 	r := rand.New(rand.NewSource(time.Now().UnixNano()))

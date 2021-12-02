@@ -1,6 +1,8 @@
 package utility
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestInsertKth(t *testing.T) {
 	data := []struct {

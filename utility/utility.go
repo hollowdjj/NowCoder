@@ -90,6 +90,31 @@ func SliceToList(slice []int) *ListNode {
 	return pHead
 }
 
+//SliceToLoopList 将链表的最后一个元素与k个元素相连形成一个有环链表
+func SliceToLoopList(slice []int, k int) *ListNode {
+	if len(slice) == 0 {
+		return nil
+	}
+	if k < 1 {
+		panic("k should not less than 1")
+	}
+	var nodes []*ListNode
+	head := &ListNode{Val: slice[0]}
+	temp := head
+	nodes = append(nodes, head)
+	for i := 1; i < len(slice); i++ {
+		newNode := &ListNode{
+			Val:  slice[i],
+			Next: nil,
+		}
+		nodes = append(nodes, newNode)
+		temp.Next = newNode
+		temp = temp.Next
+	}
+	nodes[len(nodes)-1].Next = nodes[k-1]
+	return head
+}
+
 //EqualSliceInt 判断两[]int类型的slice是否相等
 func EqualSliceInt(a, b []int) bool {
 	if len(a) != len(b) {

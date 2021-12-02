@@ -4,6 +4,7 @@ import "nowcoder/utility"
 
 //给一个长度为n链表，若其中包含环，请找出该链表的环的入口结点，否则，返回null。
 
+//EntryNodeOfLoop 找出有环链表的环的入口结点，若链表无环，返回nil
 func EntryNodeOfLoop(pHead *utility.ListNode) *utility.ListNode {
 	slow, fast := pHead, pHead
 	for {
