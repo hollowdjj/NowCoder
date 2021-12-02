@@ -61,7 +61,7 @@ func AddInList(head1, head2 *utility.ListNode) *utility.ListNode {
 	return head.Next
 }
 
-//AddInListAdvanced 翻转链表后相加。空间复杂度为O(1)，时间复杂度为O(n)
+//AddInListAdvanced 翻转链表后相加。空间复杂度为O(n)，时间复杂度为O(n)
 func AddInListAdvanced(head1, head2 *utility.ListNode) *utility.ListNode {
 	//翻转两链表
 	head1, head2 = ReverseList(head1), ReverseList(head2)
