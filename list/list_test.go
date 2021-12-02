@@ -468,6 +468,26 @@ func TestSortInList(t *testing.T) {
 	}
 }
 
+func TestSwapLinkedPair(t *testing.T) {
+	data := []struct {
+		source  []int
+		wanting []int
+	}{
+		{[]int{}, []int{}},
+		{[]int{1}, []int{1}},
+		{[]int{1, 2, 3}, []int{2, 1, 3}},
+		{[]int{1, 2, 3, 4}, []int{2, 1, 4, 3}},
+	}
+
+	for _, v := range data {
+		head := utility.SliceToList(v.source)
+		res := SwapLinkedPair(head)
+		if !res.Equal(utility.SliceToList(v.wanting)) {
+			t.Errorf("SwapLinkedPair(%v)=%s", v.source, res)
+		}
+	}
+}
+
 func TestYsf(t *testing.T) {
 	data := []struct {
 		m, n    int
@@ -500,26 +520,6 @@ func TestYsf(t *testing.T) {
 		nHead.Next = head
 		if res := YsfByList(head, v.m).Val; res != v.wanting {
 			t.Errorf("YsfByList(%d,%d)=%d", v.source[len(v.source)-1], v.m, res)
-		}
-	}
-}
-
-func TestSwapLinkedPair(t *testing.T) {
-	data := []struct {
-		source  []int
-		wanting []int
-	}{
-		{[]int{}, []int{}},
-		{[]int{1}, []int{1}},
-		{[]int{1, 2, 3}, []int{2, 1, 3}},
-		{[]int{1, 2, 3, 4}, []int{2, 1, 4, 3}},
-	}
-
-	for _, v := range data {
-		head := utility.SliceToList(v.source)
-		res := SwapLinkedPair(head)
-		if !res.Equal(utility.SliceToList(v.wanting)) {
-			t.Errorf("SwapLinkedPair(%v)=%s", v.source, res)
 		}
 	}
 }

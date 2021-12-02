@@ -8,6 +8,7 @@ import (
 两两交换链表的节点，例如1->2->3 变为2->1->3
 */
 
+//SwapLinkedPair 两两交换链表的节点
 func SwapLinkedPair(head *utility.ListNode) *utility.ListNode {
 	dummy := &utility.ListNode{Val: -1, Next: head}
 	prev, left := dummy, head
@@ -22,7 +23,6 @@ func SwapLinkedPair(head *utility.ListNode) *utility.ListNode {
 
 		prev = left
 		left = left.Next
-
 	}
 
 	return dummy.Next
