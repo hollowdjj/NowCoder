@@ -9,6 +9,7 @@ import "nowcoder/utility"
       输入{1,9,9}，返回值{2,0,0}
 */
 
+//PlusOne 链表整数加1
 func PlusOne(head *utility.ListNode) *utility.ListNode {
 	if head == nil {
 		return nil

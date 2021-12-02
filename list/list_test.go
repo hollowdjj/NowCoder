@@ -277,6 +277,26 @@ func TestPartition(t *testing.T) {
 	}
 }
 
+func TestPlusOne(t *testing.T) {
+	data := []struct {
+		source  []int
+		wanting []int
+	}{
+		{[]int{1, 2, 3}, []int{1, 2, 4}},
+		{[]int{1, 9}, []int{2, 0}},
+		{[]int{9}, []int{1, 0}},
+		{[]int{}, []int{}},
+	}
+
+	for _, v := range data {
+		head := utility.SliceToList(v.source)
+		res := PlusOne(head)
+		if !res.Equal(utility.SliceToList(v.wanting)) {
+			t.Errorf("PlusOne(%v)=%s", v.source, res)
+		}
+	}
+}
+
 func TestReverseKGroup(t *testing.T) {
 	data := []struct {
 		source  []int
@@ -421,26 +441,6 @@ func TestSwapLinkedPair(t *testing.T) {
 		res := SwapLinkedPair(head)
 		if !res.Equal(utility.SliceToList(v.wanting)) {
 			t.Errorf("SwapLinkedPair(%v)=%s", v.source, res)
-		}
-	}
-}
-
-func TestPlusOne(t *testing.T) {
-	data := []struct {
-		source  []int
-		wanting []int
-	}{
-		{[]int{1, 2, 3}, []int{1, 2, 4}},
-		{[]int{1, 9}, []int{2, 0}},
-		{[]int{9}, []int{1, 0}},
-		{[]int{}, []int{}},
-	}
-
-	for _, v := range data {
-		head := utility.SliceToList(v.source)
-		res := PlusOne(head)
-		if !res.Equal(utility.SliceToList(v.wanting)) {
-			t.Errorf("PlusOne(%v)=%s", v.source, res)
 		}
 	}
 }
