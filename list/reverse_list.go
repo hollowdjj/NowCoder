@@ -2,8 +2,7 @@ package list
 
 import "nowcoder/utility"
 
-//翻转链表
-
+//ReverseList 翻转链表
 func ReverseList(pHead *utility.ListNode) *utility.ListNode {
 	var prev *utility.ListNode
 	for pHead != nil {
