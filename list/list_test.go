@@ -431,6 +431,23 @@ func TestRotateLinkedList(t *testing.T) {
 	}
 }
 
+func TestSortLinkedList(t *testing.T) {
+	data := []struct {
+		source  []int
+		wanting []int
+	}{
+		{[]int{1, 3, 2, 2, 3, 1}, []int{1, 1, 2, 2, 3, 3}},
+	}
+
+	for _, v := range data {
+		head := utility.SliceToList(v.source)
+		res := SortLinkedList(head)
+		if !res.Equal(utility.SliceToList(v.wanting)) {
+			t.Errorf("SortLinkedList(%v)=%s", v.source, res)
+		}
+	}
+}
+
 func TestYsf(t *testing.T) {
 	data := []struct {
 		m, n    int
@@ -483,23 +500,6 @@ func TestSwapLinkedPair(t *testing.T) {
 		res := SwapLinkedPair(head)
 		if !res.Equal(utility.SliceToList(v.wanting)) {
 			t.Errorf("SwapLinkedPair(%v)=%s", v.source, res)
-		}
-	}
-}
-
-func TestSortLinkedList(t *testing.T) {
-	data := []struct {
-		source  []int
-		wanting []int
-	}{
-		{[]int{1, 3, 2, 2, 3, 1}, []int{1, 1, 2, 2, 3, 3}},
-	}
-
-	for _, v := range data {
-		head := utility.SliceToList(v.source)
-		res := SortLinkedList(head)
-		if !res.Equal(utility.SliceToList(v.wanting)) {
-			t.Errorf("SortLinkedList(%v)=%s", v.source, res)
 		}
 	}
 }

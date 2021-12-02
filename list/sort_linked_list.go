@@ -11,6 +11,7 @@ import "nowcoder/utility"
 {1,1,2,2,3,3}
 */
 
+//SortLinkedList 排序一个奇升偶降的链表
 func SortLinkedList(head *utility.ListNode) *utility.ListNode {
 	//链表奇偶拆分
 	odd, even := PartitionList(head)
