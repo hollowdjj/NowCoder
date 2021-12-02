@@ -44,6 +44,7 @@ func (head *ListNode) Slice() []int {
 	return res
 }
 
+//SliceToList 将slice转换成链表。若slice为空或者nil时，返回nil
 func SliceToList(slice []int) *ListNode {
 	n := len(slice)
 	if n < 1 {
@@ -64,23 +65,7 @@ func SliceToList(slice []int) *ListNode {
 	return pHead
 }
 
-//func PrintList(pHead *ListNode) {
-//	fmt.Print("[")
-//	for pHead != nil {
-//		fmt.Printf(" %d ", pHead.Val)
-//		pHead = pHead.Next
-//	}
-//	fmt.Println("]")
-//}
-
-//func ListToSlice(head *ListNode) (res []int) {
-//	for head != nil {
-//		res = append(res, head.Val)
-//		head = head.Next
-//	}
-//	return
-//}
-
+//EqualSliceInt 判断两[]int类型的slice是否相等
 func EqualSliceInt(a, b []int) bool {
 	if len(a) != len(b) {
 		return false
@@ -94,20 +79,6 @@ func EqualSliceInt(a, b []int) bool {
 
 	return true
 }
-
-//func EqualList(head1, head2 *ListNode) bool {
-//	for head1 != nil && head2 != nil {
-//		if head1.Val != head2.Val {
-//			return false
-//		}
-//		head1, head2 = head1.Next, head2.Next
-//	}
-//	if head1 != nil || head2 != nil {
-//		return false
-//	}
-//
-//	return true
-//}
 
 type StackInt []int //定义一个stack类型
 
