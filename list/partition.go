@@ -11,6 +11,7 @@ import "nowcoder/utility"
 要求：时间复杂度O(n)，空间复杂度O(1)
 */
 
+//Partition 分隔链表
 func Partition(head *utility.ListNode, x int) *utility.ListNode {
 	smaller := &utility.ListNode{
 		Val:  101,

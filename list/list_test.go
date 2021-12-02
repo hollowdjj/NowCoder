@@ -257,6 +257,26 @@ func TestOddEvenList(t *testing.T) {
 	}
 }
 
+func TestPartition(t *testing.T) {
+	data := []struct {
+		source  []int
+		x       int
+		wanting []int
+	}{
+		{[]int{1, 4, 3, 2, 5, 2}, 3, []int{1, 2, 2, 4, 3, 5}},
+		{[]int{1, 2, 3, 4, 1}, 5, []int{1, 2, 3, 4, 1}},
+		{[]int{}, 5, []int{}},
+	}
+
+	for _, v := range data {
+		head := utility.SliceToList(v.source)
+		newHead := Partition(head, v.x)
+		if !newHead.Equal(utility.SliceToList(v.wanting)) {
+			t.Errorf("Partition(%s,%d)=%s", head, v.x, newHead)
+		}
+	}
+}
+
 func TestReverseKGroup(t *testing.T) {
 	data := []struct {
 		source  []int
@@ -381,26 +401,6 @@ func TestYsf(t *testing.T) {
 		nHead.Next = head
 		if res := YsfByList(head, v.m).Val; res != v.wanting {
 			t.Errorf("YsfByList(%d,%d)=%d", v.source[len(v.source)-1], v.m, res)
-		}
-	}
-}
-
-func TestPartition(t *testing.T) {
-	data := []struct {
-		source  []int
-		x       int
-		wanting []int
-	}{
-		{[]int{1, 4, 3, 2, 5, 2}, 3, []int{1, 2, 2, 4, 3, 5}},
-		{[]int{1, 2, 3, 4, 1}, 5, []int{1, 2, 3, 4, 1}},
-		{[]int{}, 5, []int{}},
-	}
-
-	for _, v := range data {
-		head := utility.SliceToList(v.source)
-		newHead := Partition(head, v.x)
-		if !newHead.Equal(utility.SliceToList(v.wanting)) {
-			t.Errorf("Partition(%s,%d)=%s", head, v.x, newHead)
 		}
 	}
 }
