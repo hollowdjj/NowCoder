@@ -6,6 +6,7 @@ package array
 要求：空间复杂度：O(1)，时间复杂度O(n)
 */
 
+//MoreThanHalfNum 找到数组中出现次数超过数组长度一半的数字
 func MoreThanHalfNum(numbers []int) int {
 	/*
 		候选人法。当两个数字不想等时，同时消除这两个数字，最坏的情况下是同时消除一个众数和非众数。
