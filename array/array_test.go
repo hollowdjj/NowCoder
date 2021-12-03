@@ -5,6 +5,26 @@ import (
 	"testing"
 )
 
+func TestGetNumberOfK(t *testing.T) {
+	data := []struct {
+		source  []int
+		k       int
+		wanting int
+	}{
+		{[]int{}, 1, 0},
+		{[]int{1}, 2, 0},
+		{[]int{1}, 1, 1},
+		{[]int{1, 2}, 2, 1},
+		{[]int{1, 2, 3, 3, 3, 4, 4, 5}, 3, 3},
+	}
+
+	for _, v := range data {
+		if res := GetNumberOfK(v.source, v.k); res != v.wanting {
+			t.Errorf("GetNumberOfK(%v)=%v", v.source, res)
+		}
+	}
+}
+
 func TestMoreThanHalfNum(t *testing.T) {
 	data := []struct {
 		source  []int
