@@ -25,6 +25,23 @@ func TestGetNumberOfK(t *testing.T) {
 	}
 }
 
+func TestMaxProduct(t *testing.T) {
+	data := []struct {
+		source  []int
+		wanting int64
+	}{
+		{[]int{3, 4, 1, 2}, 24},
+		{[]int{-1, -1, 1, 2}, 2},
+		{[]int{-2, -2, 1, 1}, 4},
+	}
+
+	for _, v := range data {
+		if res := MaxProduct(v.source); res != v.wanting {
+			t.Errorf("MaxProduct(%v)=%v", v.source, res)
+		}
+	}
+}
+
 func TestMoreThanHalfNum(t *testing.T) {
 	data := []struct {
 		source  []int
