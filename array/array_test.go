@@ -83,3 +83,19 @@ func TestReorderArray(t *testing.T) {
 		}
 	}
 }
+
+func TestYangHuiTriangle(t *testing.T) {
+	data := []struct {
+		num     int
+		wanting [][]int
+	}{
+		{1, [][]int{{1}}},
+		{4, [][]int{{1}, {1, 1}, {1, 2, 1}, {1, 3, 3, 1}}},
+	}
+
+	for _, v := range data {
+		if res := YangHuiTriangle(v.num); !utility.EqualTwoDimSlice(v.wanting, res) {
+			t.Errorf("YangHuiTriangle(%d)=%v", v.num, res)
+		}
+	}
+}

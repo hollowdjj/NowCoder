@@ -132,7 +132,23 @@ func EqualSliceInt(a, b []int) bool {
 	return true
 }
 
-type StackInt []int //定义一个stack类型
+func EqualTwoDimSlice(s1, s2 [][]int) bool {
+	n1, n2 := len(s1), len(s2)
+	if n1 != n2 {
+		return false
+	}
+
+	for i := 0; i < n1; i++ {
+		if !EqualSliceInt(s1[i], s2[i]) {
+			return false
+		}
+	}
+
+	return true
+}
+
+//StackInt 一个元素类型为int的模拟堆栈
+type StackInt []int //
 
 func (s *StackInt) Pop() int {
 	//先入后出
