@@ -157,6 +157,7 @@ func TestRotateArray(t *testing.T) {
 		}
 	}
 }
+
 func TestSpiralOrder(t *testing.T) {
 	data := []struct {
 		source  [][]int
@@ -172,6 +173,22 @@ func TestSpiralOrder(t *testing.T) {
 	for _, v := range data {
 		if res := SpiralOrder(v.source); !utility.EqualSliceInt(res, v.wanting) {
 			t.Errorf("SpiralOrder(%v)=%v", v.source, res)
+		}
+	}
+}
+
+func TestThreeSum(t *testing.T) {
+	data := []struct {
+		source  []int
+		wanting [][]int
+	}{
+		{[]int{0}, [][]int{}},
+		{[]int{-2, 0, 1, 1, 2}, [][]int{{-2, 1, 1}, {-2, 0, 2}}},
+	}
+
+	for _, v := range data {
+		if res := ThreeSum(v.source); !utility.EqualTwoDimSlice(res, v.wanting) {
+			t.Errorf("ThreeSum(%v)=%v", v.source, res)
 		}
 	}
 }
