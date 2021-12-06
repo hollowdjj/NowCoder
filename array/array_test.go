@@ -41,6 +41,25 @@ func TestGetNumberOfK(t *testing.T) {
 	}
 }
 
+func TestMaxLength(t *testing.T) {
+	data := []struct {
+		source  []int
+		wanting int
+	}{
+		{[]int{}, 0},
+		{[]int{1}, 1},
+		{[]int{1, 1}, 1},
+		{[]int{1, 1, 2}, 2},
+		{[]int{2, 2, 3, 4, 3}, 3},
+	}
+
+	for _, v := range data {
+		if res := MaxLength(v.source); res != v.wanting {
+			t.Errorf("MaxLength(%v)=%d", v.source, res)
+		}
+	}
+}
+
 func TestMaxProduct(t *testing.T) {
 	data := []struct {
 		source  []int
@@ -100,6 +119,44 @@ func TestReorderArray(t *testing.T) {
 	}
 }
 
+func TestReverseArray(t *testing.T) {
+	data := []struct {
+		source  []int
+		wanting []int
+	}{
+		{[]int{}, []int{}},
+		{[]int{1}, []int{1}},
+		{[]int{1, 2}, []int{2, 1}},
+		{[]int{1, 2, 3}, []int{3, 2, 1}},
+	}
+
+	for _, v := range data {
+		var temp []int
+		temp = append(temp, v.source...)
+		if ReverseArray(v.source); !utility.EqualSliceInt(v.source, v.wanting) {
+			t.Errorf("ReverseArray(%v)=%v", temp, v.source)
+		}
+	}
+}
+
+func TestRotateArray(t *testing.T) {
+	data := []struct {
+		source  []int
+		m       int
+		wanting []int
+	}{
+		{[]int{}, 10, []int{}},
+		{[]int{1}, 10, []int{1}},
+		{[]int{1, 2, 3, 4, 5, 6}, 2, []int{5, 6, 1, 2, 3, 4}},
+		{[]int{1, 2, 3, 4, 5, 6}, 8, []int{5, 6, 1, 2, 3, 4}},
+	}
+
+	for _, v := range data {
+		if res := RotateArray(v.source, v.m, len(v.source)); !utility.EqualSliceInt(res, v.wanting) {
+			t.Errorf("RotateArray(%v,%d,%d)=%v", v.source, v.m, len(v.source), res)
+		}
+	}
+}
 func TestSpiralOrder(t *testing.T) {
 	data := []struct {
 		source  [][]int
