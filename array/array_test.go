@@ -84,6 +84,25 @@ func TestReorderArray(t *testing.T) {
 	}
 }
 
+func TestSpiralOrder(t *testing.T) {
+	data := []struct {
+		source  [][]int
+		wanting []int
+	}{
+		//{[][]int{},[]int{}},
+		//{[][]int{{2,3}},[]int{2,3}},
+		{[][]int{{2}, {3}}, []int{2, 3}},
+		//{[][]int{{1,2},{3,4}},[]int{1,2,4,3}},
+		//{[][]int{{1,2,3},{4,5,6},{7,8,9}},[]int{1,2,3,6,9,8,7,4,5}},
+	}
+
+	for _, v := range data {
+		if res := SpiralOrder(v.source); !utility.EqualSliceInt(res, v.wanting) {
+			t.Errorf("SpiralOrder(%v)=%v", v.source, res)
+		}
+	}
+}
+
 func TestYangHuiTriangle(t *testing.T) {
 	data := []struct {
 		num     int
