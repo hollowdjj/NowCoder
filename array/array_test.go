@@ -5,6 +5,22 @@ import (
 	"testing"
 )
 
+func TestFibonacci(t *testing.T) {
+	data := []struct {
+		n, wanting int
+	}{
+		{1, 1},
+		{2, 1},
+		{4, 3},
+	}
+
+	for _, v := range data {
+		if res := Fibonacci(v.n); res != v.wanting {
+			t.Errorf("Fibonacci(%d)=%d", v.n, res)
+		}
+	}
+}
+
 func TestGetNumberOfK(t *testing.T) {
 	data := []struct {
 		source  []int
