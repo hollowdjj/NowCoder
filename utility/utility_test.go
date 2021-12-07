@@ -1,6 +1,7 @@
 package utility
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -42,5 +43,52 @@ func TestEqualTwoDimSlice(t *testing.T) {
 		if res := EqualTwoDimSlice(v.s1, v.s2); res != v.wanting {
 			t.Errorf("EqualTwoDimSlice(%v,%v)=%v", v.s1, v.s2, res)
 		}
+	}
+}
+
+func TestQueue(t *testing.T) {
+	q := CreateQueue()
+	q.Enqueue(1)
+	q.Enqueue(2)
+	q.Enqueue(3)
+	q.Enqueue(4)
+	fmt.Printf("Pop: %d\t", *q.Dequeue())
+	fmt.Printf("Size: %d\n", q.Size())
+	fmt.Printf("Pop: %d\t", *q.Dequeue())
+	fmt.Printf("Size: %d\n", q.Size())
+	fmt.Printf("Pop: %d\t", *q.Dequeue())
+	fmt.Printf("Size: %d\n", q.Size())
+	fmt.Printf("Pop: %d\t", *q.Dequeue())
+	fmt.Printf("Size: %d\n", q.Size())
+}
+
+func TestSliceToBinaryTree(t *testing.T) {
+	data := []struct {
+		source  []int
+		wanting []int
+	}{
+		{[]int{1, 2, 3, 4, '#', 5, 6, '#', 7, '#', '#', '#', '#', 8, '#'},
+			[]int{1, 2, 3, 4, '#', 5, 6, '#', 7, '#', '#', '#', '#', 8, '#'}},
+	}
+
+	for _, v := range data {
+		root := SliceToBinaryTree(v.source, 0)
+		temp := root.LevelOrder()
+		if !EqualSliceInt(v.wanting, temp) {
+			t.Errorf("SliceToBinaryTree(%v)=%v", v.source, temp)
+		}
+	}
+}
+
+func TestLevelOrder(t *testing.T) {
+	nodes := make([]*TreeNode, 5)
+	for i := 0; i < len(nodes); i++ {
+		nodes[i] = &TreeNode{Val: i + 1}
+	}
+	nodes[0].Left, nodes[0].Right = nodes[1], nodes[2]
+	nodes[1].Left, nodes[2].Right = nodes[3], nodes[4]
+
+	if res := nodes[0].LevelOrder(); !EqualSliceInt(res, []int{1, 2, 3, 4, '#', '#', 5}) {
+		t.Errorf("LevelOrder(%v)=%v", nodes[0], res)
 	}
 }

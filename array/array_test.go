@@ -95,6 +95,19 @@ func TestMoreThanHalfNum(t *testing.T) {
 	}
 }
 
+func TestReconstructBinaryTree(t *testing.T) {
+	//data := []struct {
+	//	pre, vin []int
+	//	tree     string
+	//}{
+	//	{[]int{1, 2, 4, 7, 3, 5, 6, 8}, []int{4, 7, 2, 1, 5, 3, 8, 6}, "1,2,3,4,#,5,6,#,7,#,#,8"},
+	//}
+	//
+	//for _, v := range data {
+	//
+	//}
+}
+
 func TestReorderArray(t *testing.T) {
 	data := []struct {
 		source  []int
@@ -210,3 +223,7 @@ func TestYangHuiTriangle(t *testing.T) {
 		}
 	}
 }
+
+/*
+工具函数测试
+*/

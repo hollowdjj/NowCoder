@@ -147,7 +147,9 @@ func EqualTwoDimSlice(s1, s2 [][]int) bool {
 	return true
 }
 
-//StackInt 一个元素类型为int的模拟堆栈
+/*
+StackInt 一个元素类型为int的模拟堆栈
+*/
 type StackInt []int //
 
 func (s *StackInt) Pop() int {
