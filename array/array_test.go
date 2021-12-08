@@ -77,6 +77,22 @@ func TestMaxProduct(t *testing.T) {
 	}
 }
 
+func TestMinPathSum(t *testing.T) {
+	data := []struct {
+		source  [][]int
+		wanting int
+	}{
+		{[][]int{{1, 3, 5, 9}, {8, 1, 3, 4}, {5, 0, 6, 1}, {8, 8, 4, 0}}, 12},
+		{[][]int{{1, 2, 3}, {1, 2, 3}}, 7},
+	}
+
+	for _, v := range data {
+		if res := MinPathSum(v.source); res != v.wanting {
+			t.Errorf("MinPathSum(%v)=%v", v.source, res)
+		}
+	}
+}
+
 func TestMoreThanHalfNum(t *testing.T) {
 	data := []struct {
 		source  []int

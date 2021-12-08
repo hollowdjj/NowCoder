@@ -31,3 +31,11 @@ func MaxOfTwoInt(a, b int) int {
 	}
 	return b
 }
+
+func MinOfTwoInt(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+
+}
