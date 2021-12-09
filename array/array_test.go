@@ -77,6 +77,26 @@ func TestMaxProduct(t *testing.T) {
 	}
 }
 
+func TestMergeIntervals(t *testing.T) {
+	data := []struct {
+		source  [][2]int
+		wanting [][2]int
+	}{
+		//{[][2]int{{10, 30}, {80, 100}, {150, 180}, {20, 60}}, [][2]int{{10, 60}, {80, 100}, {150, 180}}},
+		//{[][2]int{{0, 10}, {10, 20}}, [][2]int{{0, 20}}},
+		//{[][2]int{}, [][2]int{}},
+		{[][2]int{{1, 4}, {2, 3}}, [][2]int{{1, 4}}},
+	}
+
+	for _, v := range data {
+		intervals := SliceToInterval(v.source)
+		res := MergeIntervals(intervals)
+		wanting := SliceToInterval(v.wanting)
+		if !EqualIntervalSlice(wanting, res) {
+			t.Errorf("MergeIntervals(%s)=%s", PrintIntervals(intervals), PrintIntervals(res))
+		}
+	}
+}
 func TestMinPathSum(t *testing.T) {
 	data := []struct {
 		source  [][]int
