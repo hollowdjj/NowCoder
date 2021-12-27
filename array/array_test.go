@@ -115,6 +115,26 @@ func TestMergeIntervals(t *testing.T) {
 	}
 }
 
+func TestMinNumberDisappeared(t *testing.T) {
+	data := []struct {
+		source  []int
+		wanting int
+	}{
+		{[]int{1, 0, 2}, 3},
+		{[]int{-2, 3, 4, 1, 5}, 2},
+		{[]int{4, 5, 6, 8, 9}, 1},
+		{[]int{3, 2, 1}, 4},
+	}
+
+	for _, v := range data {
+		var array []int
+		array = append(array, v.source...)
+		if res := MinNumberDisappeared(array); res != v.wanting {
+			t.Errorf("MinNumberDisappeared(%v)=%v", v.source, res)
+		}
+	}
+}
+
 func TestMinPathSum(t *testing.T) {
 	data := []struct {
 		source  [][]int
