@@ -245,6 +245,21 @@ func TestRotateArray(t *testing.T) {
 	}
 }
 
+func TestRotateMatrix(t *testing.T) {
+	data := []struct {
+		source  [][]int
+		wanting [][]int
+	}{
+		{[][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}, [][]int{{7, 4, 1}, {8, 5, 2}, {9, 6, 3}}},
+	}
+
+	for _, v := range data {
+		if res := RotateMatrix(v.source, len(v.source)); !utility.EqualTwoDimSlice(res, v.wanting) {
+			t.Errorf("RotateMatrix(%v,%v)=%v", v.source, len(v.source), res)
+		}
+	}
+}
+
 func TestSpiralOrder(t *testing.T) {
 	data := []struct {
 		source  [][]int
