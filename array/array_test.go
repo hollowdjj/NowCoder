@@ -77,6 +77,23 @@ func TestMaxProduct(t *testing.T) {
 	}
 }
 
+func TestFindMedianInTwoSortedArray(t *testing.T) {
+	data := []struct {
+		arr1, arr2 []int
+		wanting    int
+	}{
+		{[]int{1, 2, 3, 4}, []int{3, 4, 5, 6}, 3},
+		{[]int{1, 4, 6, 7, 9}, []int{2, 3, 4, 5, 8}, 4},
+		{[]int{1}, []int{2}, 1},
+	}
+
+	for _, v := range data {
+		if res := FindMedianInTwoSortedArray(v.arr1, v.arr2); res != v.wanting {
+			t.Errorf("FindMedianInTwoSortedArray(%v,%v)=%d", v.arr1, v.arr2, res)
+		}
+	}
+}
+
 func TestMergeIntervals(t *testing.T) {
 	data := []struct {
 		source  [][2]int
@@ -97,6 +114,7 @@ func TestMergeIntervals(t *testing.T) {
 		}
 	}
 }
+
 func TestMinPathSum(t *testing.T) {
 	data := []struct {
 		source  [][]int
