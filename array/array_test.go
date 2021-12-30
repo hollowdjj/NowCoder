@@ -38,6 +38,41 @@ func TestFibonacci(t *testing.T) {
 	}
 }
 
+func TestFindPeakElement(t *testing.T) {
+	data := []struct {
+		source  []int
+		wanting []int
+	}{
+		{[]int{2, 4, 1, 2, 7, 8, 4}, []int{1, 5}},
+		{[]int{1, 2, 3, 1}, []int{2}},
+	}
+
+	for _, v := range data {
+		res := FindPeakElement(v.source)
+		res1 := FindPeakElementAdvanced(v.source)
+		flag, flag1 := false, false
+		for _, w := range v.wanting {
+			if w == res {
+				flag = true
+				break
+			}
+		}
+		for _, w := range v.wanting {
+			if w == res1 {
+				flag1 = true
+				break
+			}
+		}
+		if !flag {
+			t.Errorf("FindPeakElement(%v)=%v", v.source, res)
+		}
+		if !flag1 {
+			t.Errorf("FindPeakElementAdvanced(%v)=%v", v.source, res)
+		}
+
+	}
+}
+
 func TestGetNumberOfK(t *testing.T) {
 	data := []struct {
 		source  []int
@@ -314,6 +349,7 @@ func TestSubSets(t *testing.T) {
 		}
 	}
 }
+
 func TestThreeSum(t *testing.T) {
 	data := []struct {
 		source  []int
