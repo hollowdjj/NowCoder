@@ -31,21 +31,23 @@ func RotateMatrixAdvanced(mat [][]int, n int) [][]int {
 		7  8  9			  3  6  9
 	*/
 	for i := 0; i < n; i++ {
-		for j := 0; j < n; j++ {
+		for j := i; j < n; j++ {
+			temp := mat[i][j]
 			mat[i][j] = mat[j][i]
+			mat[j][i] = temp
 		}
 	}
 	//然后再把每一行的数字逆转
-	//for i := 0; i < n; i++ {
-	//	left, right := 0, n-1
-	//	for left < right {
-	//		temp := mat[i][left]
-	//		mat[i][left] = mat[i][right]
-	//		mat[i][right] = temp
-	//		left++
-	//		right--
-	//	}
-	//}
+	for i := 0; i < n; i++ {
+		left, right := 0, n-1
+		for left < right {
+			temp := mat[i][left]
+			mat[i][left] = mat[i][right]
+			mat[i][right] = temp
+			left++
+			right--
+		}
+	}
 
 	return mat
 }
