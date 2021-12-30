@@ -257,6 +257,10 @@ func TestRotateMatrix(t *testing.T) {
 		if res := RotateMatrix(v.source, len(v.source)); !utility.EqualTwoDimSlice(res, v.wanting) {
 			t.Errorf("RotateMatrix(%v,%v)=%v", v.source, len(v.source), res)
 		}
+
+		if res := RotateMatrixAdvanced(v.source, len(v.source)); !utility.EqualTwoDimSlice(res, v.wanting) {
+			t.Errorf("RotateMatrix(%v,%v)=%v", v.source, len(v.source), res)
+		}
 	}
 }
 
