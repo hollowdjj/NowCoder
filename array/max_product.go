@@ -11,7 +11,7 @@ import "math"
 
 //MaxProduct 无序数组中三个数的最大乘积
 func MaxProduct(A []int) int64 {
-	//思路就是遍历一次数组，找到最大的三个数，以及最小的数
+	//思路就是遍历一次数组，找到最大的三个数，以及最小的两个数
 	smallest1, smallest2 := math.MaxInt, math.MaxInt
 	biggest1, biggest2, biggest3 := math.MinInt, math.MinInt, math.MinInt
 
