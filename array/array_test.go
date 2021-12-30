@@ -21,6 +21,7 @@ func TestCombinationSum2(t *testing.T) {
 		}
 	}
 }
+
 func TestFibonacci(t *testing.T) {
 	data := []struct {
 		n, wanting int
@@ -299,6 +300,20 @@ func TestSpiralOrder(t *testing.T) {
 	}
 }
 
+func TestSubSets(t *testing.T) {
+	data := []struct {
+		source  []int
+		wanting [][]int
+	}{
+		{[]int{1, 2, 3}, [][]int{{}, {1}, {2}, {3}, {1, 2}, {1, 3}, {2, 3}, {1, 2, 3}}},
+	}
+
+	for _, v := range data {
+		if res := SubSets(v.source); !utility.EqualTwoDimSlice(res, v.wanting) {
+			t.Errorf("SubSets(%v)=%v", v.source, res)
+		}
+	}
+}
 func TestThreeSum(t *testing.T) {
 	data := []struct {
 		source  []int
