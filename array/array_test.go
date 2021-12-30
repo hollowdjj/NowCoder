@@ -5,6 +5,22 @@ import (
 	"testing"
 )
 
+func TestCombinationSum2(t *testing.T) {
+	data := []struct {
+		source  []int
+		target  int
+		wanting [][]int
+	}{
+		//{[]int{100, 10, 20, 70, 60, 10, 50}, 80, [][]int{{10, 10, 60}, {10, 20, 50}, {10, 70}, {20, 60}}},
+		{[]int{22, 49, 5, 24, 26}, 77, [][]int{{5, 22, 24, 26}}},
+	}
+
+	for _, v := range data {
+		if res := CombinationSum2(v.source, v.target); !utility.EqualTwoDimSlice(v.wanting, res) {
+			t.Errorf("CombinationSum2(%v,%v)=%v", v.source, v.target, res)
+		}
+	}
+}
 func TestFibonacci(t *testing.T) {
 	data := []struct {
 		n, wanting int
