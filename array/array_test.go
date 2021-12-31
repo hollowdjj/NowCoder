@@ -111,6 +111,21 @@ func TestGetNumberOfK(t *testing.T) {
 	}
 }
 
+func TestInversePairs(t *testing.T) {
+	data := []struct {
+		source  []int
+		wanting int
+	}{
+		{[]int{1, 2, 3, 4, 5, 6, 7, 0}, 7},
+	}
+
+	for _, v := range data {
+		if res := InversePairs(v.source); res != v.wanting {
+			t.Errorf("InversePairs(%v)=%v", v.source, res)
+		}
+	}
+}
+
 func TestMaxLength(t *testing.T) {
 	data := []struct {
 		source  []int
