@@ -38,6 +38,24 @@ func TestFibonacci(t *testing.T) {
 	}
 }
 
+func TestFind(t *testing.T) {
+	data := []struct {
+		source  [][]int
+		target  int
+		wanting bool
+	}{
+		{[][]int{{}}, 1, false},
+		{[][]int{{1, 2, 8, 9}, {2, 4, 9, 12}, {4, 7, 10, 13}, {6, 8, 11, 15}}, 7, true},
+		{[][]int{{1, 2, 8, 9}, {2, 4, 9, 12}, {4, 7, 10, 13}, {6, 8, 11, 15}}, 3, false},
+	}
+
+	for _, v := range data {
+		if res := Find(v.target, v.source); res != v.wanting {
+			t.Errorf("Find(%v,%v)=%v", v.target, v.source, res)
+		}
+	}
+}
+
 func TestFindPeakElement(t *testing.T) {
 	data := []struct {
 		source  []int
