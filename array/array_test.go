@@ -414,6 +414,21 @@ func TestSubSets(t *testing.T) {
 	}
 }
 
+func TestSubsets2(t *testing.T) {
+	data := []struct {
+		source  []int
+		wanting [][]int
+	}{
+		{[]int{1, 2, 2}, [][]int{{}, {1}, {1, 2}, {1, 2, 2}, {2}, {2, 2}}},
+	}
+
+	for _, v := range data {
+		if res := Subsets2(v.source); !utility.EqualTwoDimSlice(v.wanting, res) {
+			t.Errorf("Subsets2(%v)=%v", v.source, res)
+		}
+	}
+}
+
 func TestThreeSum(t *testing.T) {
 	data := []struct {
 		source  []int
