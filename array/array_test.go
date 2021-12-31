@@ -126,6 +126,22 @@ func TestInversePairs(t *testing.T) {
 	}
 }
 
+func TestMatrixProduct(t *testing.T) {
+	data := []struct {
+		a       [][]int
+		b       [][]int
+		wanting [][]int
+	}{
+		{[][]int{{1, 2}, {3, 2}}, [][]int{{3, 4}, {2, 1}}, [][]int{{7, 6}, {13, 14}}},
+	}
+
+	for _, v := range data {
+		if res := MatrixProduct(v.a, v.b); !utility.EqualTwoDimSlice(res, v.wanting) {
+			t.Errorf("MatrixProduct(%v,%v)=%v", v.a, v.b, res)
+		}
+	}
+}
+
 func TestMaxLength(t *testing.T) {
 	data := []struct {
 		source  []int
