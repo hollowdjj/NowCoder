@@ -368,6 +368,21 @@ func TestSpiralOrder(t *testing.T) {
 	}
 }
 
+func TestSubArrayMaxProduct(t *testing.T) {
+	data := []struct {
+		source  []float64
+		wanting float64
+	}{
+		{[]float64{-2.5, 4, 0, 3, 0.5, 8, -1}, 12.0},
+	}
+
+	for _, v := range data {
+		if res := SubArrayMaxProduct(v.source); res != v.wanting {
+			t.Errorf("SubArrayMaxProduct(%v)=%v", v.source, res)
+		}
+	}
+}
+
 func TestSubSets(t *testing.T) {
 	data := []struct {
 		source  []int
