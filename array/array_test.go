@@ -111,6 +111,28 @@ func TestGetNumberOfK(t *testing.T) {
 	}
 }
 
+func TestInsertInterval(t *testing.T) {
+	data := []struct {
+		source  [][2]int
+		add     [][2]int
+		wanting [][2]int
+	}{
+		{[][2]int{{2, 5}, {6, 11}}, [][2]int{{5, 6}}, [][2]int{{2, 11}}},
+		{[][2]int{{1, 2}, {6, 11}}, [][2]int{{3, 4}}, [][2]int{{1, 2}, {3, 4}, {6, 11}}},
+		{[][2]int{{1, 3}, {6, 9}}, [][2]int{{2, 5}}, [][2]int{{1, 5}, {6, 9}}},
+		{[][2]int{{1, 2}, {3, 4}}, [][2]int{{0, 5}}, [][2]int{{0, 5}}},
+	}
+
+	for _, v := range data {
+		intervals := SliceToInterval(v.source)
+		add := SliceToInterval(v.add)[0]
+		wanting := SliceToInterval(v.wanting)
+		if res := InsertInterval(intervals, add); !EqualIntervalSlice(res, wanting) {
+			t.Errorf("InsertInterval(%v,%v)=%v", v.source, v.add, res)
+		}
+	}
+}
+
 func TestInversePairs(t *testing.T) {
 	data := []struct {
 		source  []int
