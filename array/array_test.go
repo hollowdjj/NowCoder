@@ -22,6 +22,21 @@ func TestCombinationSum2(t *testing.T) {
 	}
 }
 
+func TestCombination3(t *testing.T) {
+	data := []struct {
+		k, n    int
+		wanting [][]int
+	}{
+		{3, 7, [][]int{{1, 2, 4}}},
+	}
+
+	for _, v := range data {
+		if res := Combination3(v.k, v.n); !utility.EqualTwoDimSlice(v.wanting, res) {
+			t.Errorf("Combination3(%v,%v)=%v", v.k, v.n, res)
+		}
+	}
+}
+
 func TestFibonacci(t *testing.T) {
 	data := []struct {
 		n, wanting int
