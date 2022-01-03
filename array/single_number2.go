@@ -6,7 +6,7 @@ package array
 输入：[1,2,2,2] 返回值：1
 */
 
-func SingleNumber(nums []int) int {
+func SingleNumber2(nums []int) int {
 	/*
 		遍历数组，然后将每个数的二进制表达在32个位上的值累加到辅助数组t的相应位置t[i]上。
 		说白了，这一步就是在对整个数组统计每一位上有多少个1。
