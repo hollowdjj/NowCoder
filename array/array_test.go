@@ -106,6 +106,23 @@ func TestFindPeakElement(t *testing.T) {
 	}
 }
 
+func TestFlipChess(t *testing.T) {
+	data := []struct {
+		A       [][]int
+		f       [][]int
+		wanting [][]int
+	}{
+		{[][]int{{0, 0, 1, 1}, {1, 0, 1, 0}, {0, 1, 1, 0}, {0, 0, 1, 0}}, [][]int{{2, 2}, {3, 3}, {4, 4}}, [][]int{{0, 1, 1, 1}, {0, 0, 1, 0}, {0, 1, 1, 0},
+			{0, 0, 1, 0}}},
+	}
+
+	for _, v := range data {
+		if res := FlipChess(v.A, v.f); !utility.EqualTwoDimSlice(res, v.wanting) {
+			t.Errorf("FlipChess(%v,%v)=%v", v.A, v.f, res)
+		}
+	}
+}
+
 func TestGetNumberOfK(t *testing.T) {
 	data := []struct {
 		source  []int
