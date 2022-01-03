@@ -6,7 +6,6 @@ package array
 
 请问能否绕环路行驶一周，如果可以则返回出发的加油站编号，如果不能，则返回 -1。
 题目数据可以保证最多有一个答案。
-
 */
 
 func GasStation(gas []int, cost []int) int {
