@@ -13,38 +13,53 @@ a0≤a1≤a2...≤an-1，且1≤ai≤k
 
 func FillArray(a []int, k int) int {
 	length := len(a)
-	res := 0
+	res := 1
 
-	//left为0序列前一个位置，right为0序列后一个位置
-	left, right := 0, 0
-	for right < length {
-		if a[right] != 0 {
-			//得到可填充数字的上下限
-			lb, ub := 1, k
-			if left >= 1 {
-				lb = a[left-1]
-			}
-			if right < length-1 {
-				ub = a[right]
-			}
-			//一共要填充right - left个0。ub到lb之间，一共有ub-lb+1个数
-			m := right - left
-			n := ub - lb + 1
-			temp := factorial(n) / factorial(n-m)
-			res *= temp
-			left = right + 1
+	//left为0序列第一个数的前一个位置，right为0序列最后一个数的后一个位置
+	left := 0
+	for left < length {
+		if a[left] != 0 {
+			left++
+			continue
 		}
-		right++
+		//往后找到0序列的最后一个元素的位置right并得到合法填充值的上下限
+		right := left + 1
+		for ; right < length; right++ {
+			if a[right] != 0 {
+				break
+			}
+		}
+		//得到可填充数字的上下限
+		lb, ub := 1, k
+		m := right - left //一共有m个0元素要填充的个数
+		if left >= 1 {
+			lb = a[left-1]
+		}
+		if right < length {
+			ub = a[right]
+		} else if a[right-1] != 0 {
+			ub = a[right-1]
+			m = right - 1 - left
+		}
+		//当前0元素序列的填充方案
+		n := ub - lb + 1
+		temp := 0
+		for i := 0; i < n; i++ {
+			temp += pow(i, m-1)
+		}
+		res *= temp
+		//res %= 1000000007
+
+		left = right + 1
 	}
 
 	return res % 1000000007
 }
 
-func factorial(n int) int {
+func pow(x int, y int) int {
 	res := 1
-	for i := 1; i <= n; i++ {
-		res *= i
+	for i := 0; i < y; i++ {
+		res *= x
 	}
-
 	return res
 }
