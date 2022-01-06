@@ -28,12 +28,28 @@ func ChangeDfs(target int, nums []int) int {
 }
 
 func ChangeDp(target int, nums []int) int {
-	//dp[i][j]表示用i及其后面所有的硬币凑j，能有几种凑法。从而，状态转移方程为：
-	//			dp[i][j] = dp[i+1][j] + dp[i][j-nums[i]]
-	//dp[i+1][j]		表示的是不用第i枚硬币。那么需要凑的数不变，还是j
+	//dp[i][j]表示用第i及其之前所有的硬币凑j，能有几种凑法。从而，状态转移方程为：
+	//			dp[i][j] = dp[i-1][j] + dp[i][j-nums[i]]
+	//dp[i-1][j]		表示的是不用第i枚硬币。那么需要凑的数不变，还是j
 	//dp[i][j-nums[i]]	表示使用第i枚硬币。那么此时现在需要凑的数变成了j-nums[i]
 	//显然，对于一枚硬币，只有选还是不选两种可能，故状态转移方程就是以上两项相加
-	//n := len(nums)
-	//dp := make([][]int, n)
-	return 1
+	n := len(nums)
+	dp := make([][]int, n)
+	for i := 0; i < n; i++ {
+		dp[i] = make([]int, target+1)
+		dp[i][0] = 1
+	}
+
+	for i := 0; i < n; i++ {
+		//这里从j从nums[i]开始的原因是，当剩余金额小于当前硬币面额时，现有组合数不会发生变化
+		for j := nums[i]; j <= target; j++ {
+			if i-1 >= 0 {
+				dp[i][j] += dp[i-1][j] + dp[i][j-nums[i]]
+			} else {
+				dp[i][j] += dp[i][j-nums[i]]
+			}
+		}
+	}
+
+	return dp[n-1][target]
 }
