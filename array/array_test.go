@@ -483,6 +483,22 @@ func TestSubsets2(t *testing.T) {
 	}
 }
 
+func TestTemperatures(t *testing.T) {
+	data := []struct {
+		source  []int
+		wanting []int
+	}{
+		{[]int{1, 2, 3}, []int{1, 1, 0}},
+		{[]int{1}, []int{0}},
+	}
+
+	for _, v := range data {
+		if res := Temperatures(v.source); !utility.EqualSliceInt(res, v.wanting) {
+			t.Errorf("Temperatures(%v)=%v", v.source, res)
+		}
+	}
+}
+
 func TestThreeSum(t *testing.T) {
 	data := []struct {
 		source  []int
