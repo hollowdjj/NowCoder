@@ -44,17 +44,15 @@ func FillArray(a []int, k int) int {
 		}
 		if right < length {
 			ub = a[right]
-		} else {
-			m = right - left + 1
 		}
 		//当前0元素序列的填充方案
 		n := ub - lb + 1
-		temp := 0
-		for i := 0; i < n; i++ {
-			temp += pow(i, m-1)
-		}
+		temp := cal(m, n)
+		//for i := 0; i < n; i++ {
+		//	temp += pow(i, m-1)
+		//}
 		res *= temp
-		//res %= 1000000007
+		res %= 1000000007
 
 		left = right + 1
 	}
@@ -62,6 +60,22 @@ func FillArray(a []int, k int) int {
 	return res % 1000000007
 }
 
+func cal(m, n int) int {
+	//当可填数字个数为n，需要填m个数时的填充方案
+	Amn := factorial(n) / factorial(n-m) / factorial(m)
+	if m == 1 {
+		return Amn
+	}
+	return Amn + m
+}
+
+func factorial(x int) int {
+	res := 1
+	for i := 1; i <= x; i++ {
+		res *= i
+	}
+	return res
+}
 func pow(x int, y int) int {
 	res := 1
 	for i := 0; i < y; i++ {
