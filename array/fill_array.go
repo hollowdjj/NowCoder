@@ -12,10 +12,16 @@ a0≤a1≤a2...≤an-1，且1≤ai≤k
 */
 
 func FillArray(a []int, k int) int {
+	//以数组2,0,0,0,5为例。易知，对每一个0序列而言，填充的方案数仅仅取决于0序列的长度
+	//以及0序列的上下界。因此，可以使用动态规划。dp[i][j]，其中i为0序列可填充数的数量，为
+	//ub-lb+1；j为0序列的长度减一。
+	//0序列的长度m=3，上界为5，下届为2，因此方案数为4^2 + 3^2 + 2^2 + 1^2
+	//通过数学归纳法，可得
+
 	length := len(a)
 	res := 1
 
-	//left为0序列第一个数的前一个位置，right为0序列最后一个数的后一个位置
+	//left为0序列第一个数的位置，right为0序列最后一个数的后一个位置
 	left := 0
 	for left < length {
 		if a[left] != 0 {
@@ -23,6 +29,7 @@ func FillArray(a []int, k int) int {
 			continue
 		}
 		//往后找到0序列的最后一个元素的位置right并得到合法填充值的上下限
+		//这里存在几种情况：1. right <= length-1 2.right == length
 		right := left + 1
 		for ; right < length; right++ {
 			if a[right] != 0 {
@@ -37,9 +44,8 @@ func FillArray(a []int, k int) int {
 		}
 		if right < length {
 			ub = a[right]
-		} else if a[right-1] != 0 {
-			ub = a[right-1]
-			m = right - 1 - left
+		} else {
+			m = right - left + 1
 		}
 		//当前0元素序列的填充方案
 		n := ub - lb + 1
