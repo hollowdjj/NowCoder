@@ -66,9 +66,26 @@ func TestPrint(t *testing.T) {
 	}
 
 }
+
 func TestQueue(t *testing.T) {
 	Push(2)
 	Pop()
 	Push(1)
 	Pop()
+}
+
+func TestSolve(t *testing.T) {
+	data := []struct {
+		s       string
+		wanting int
+	}{
+		{"1+2", 3},
+	}
+
+	for _, v := range data {
+		if res := Solve(v.s); res != v.wanting {
+			t.Errorf("Solve(%v)=%v", v.s, res)
+		}
+	}
+
 }

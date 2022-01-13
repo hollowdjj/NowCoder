@@ -1,25 +1,22 @@
 package utility
 
-//Element 栈中的元素
-type Element interface{}
-
 //Stack 栈
 type Stack struct {
-	elems []Element
+	elems []interface{}
 }
 
 type Stacker interface {
-	Push(elem Element)
-	Pop() *Element
-	Top() *Element
+	Push(elem interface{})
+	Pop() *interface{}
+	Top() *interface{}
 	Empty() bool
 }
 
-func (s *Stack) Push(elem Element) {
+func (s *Stack) Push(elem interface{}) {
 	s.elems = append(s.elems, elem)
 }
 
-func (s *Stack) Pop() *Element {
+func (s *Stack) Pop() *interface{} {
 	if s.Empty() {
 		panic("Pop on empty stack")
 	}
@@ -28,7 +25,7 @@ func (s *Stack) Pop() *Element {
 	return res
 }
 
-func (s *Stack) Top() *Element {
+func (s *Stack) Top() *interface{} {
 	if s.Empty() {
 		panic("No elements in stack")
 	}
