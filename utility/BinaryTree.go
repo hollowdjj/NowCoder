@@ -8,6 +8,7 @@ type TreeNode struct {
 }
 
 //SliceToBinaryTree 将一个表示二叉树层序遍历结果的slice，即arr[index:]，转换成一颗二叉树。
+//二叉树必须是一颗完全二叉树，即所有不存的节点都需要用#表示
 func SliceToBinaryTree(arr []int, index int) *TreeNode {
 	if index >= len(arr) || arr[index] == '#' {
 		return nil

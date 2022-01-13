@@ -1,6 +1,9 @@
 package stack
 
-import "testing"
+import (
+	"nowcoder/utility"
+	"testing"
+)
 
 func TestIsValid(t *testing.T) {
 	data := []struct {
@@ -20,13 +23,6 @@ func TestIsValid(t *testing.T) {
 			t.Errorf("IsValid(%v)=%v", v.s, res)
 		}
 	}
-}
-
-func TestQueue(t *testing.T) {
-	Push(2)
-	Pop()
-	Push(1)
-	Pop()
 }
 
 func TestMaxArea(t *testing.T) {
@@ -50,4 +46,29 @@ func TestMaxArea(t *testing.T) {
 			t.Errorf("MaxAreaMonotoneStack(%v)=%v", v.heights, res)
 		}
 	}
+}
+
+func TestPrint(t *testing.T) {
+	data := []struct {
+		s       []int
+		wanting [][]int
+	}{
+		{[]int{1, 2, 3, '#', '#', 4, 5}, [][]int{{1}, {3, 2}, {4, 5}}},
+		{[]int{1, 2, 3, '#', '#', 4, 5, '#', '#', '#', '#', 6, '#', '#', '#'}, [][]int{{1}, {3, 2}, {4, 5}, {6}}},
+	}
+
+	for _, v := range data {
+		root := utility.SliceToBinaryTree(v.s, 0)
+		res := Print(root)
+		if !utility.EqualTwoDimSlice(res, v.wanting) {
+			t.Errorf("Print(%v)=%v", v.s, res)
+		}
+	}
+
+}
+func TestQueue(t *testing.T) {
+	Push(2)
+	Pop()
+	Push(1)
+	Pop()
 }
