@@ -2,6 +2,33 @@ package stack
 
 import "testing"
 
+func TestIsValid(t *testing.T) {
+	data := []struct {
+		s       string
+		wanting bool
+	}{
+		{"]", false},
+		{"[]", true},
+		{"[)", false},
+		{"{([]){", false},
+		{"([]){}", true},
+		{"[](){{", false},
+	}
+
+	for _, v := range data {
+		if res := IsValid(v.s); res != v.wanting {
+			t.Errorf("IsValid(%v)=%v", v.s, res)
+		}
+	}
+}
+
+func TestQueue(t *testing.T) {
+	Push(2)
+	Pop()
+	Push(1)
+	Pop()
+}
+
 func TestMaxArea(t *testing.T) {
 	data := []struct {
 		heights []int
