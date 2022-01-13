@@ -79,7 +79,8 @@ func TestSolve(t *testing.T) {
 		s       string
 		wanting int
 	}{
-		{"1+2", 3},
+		//{"1+2", 3},
+		{"(2 + 3 * 4) + 4", 18},
 	}
 
 	for _, v := range data {

@@ -24,6 +24,9 @@ func Solve(s string) int {
 	n := len(s)
 	for i := 0; i < n; i++ {
 		v := rune(s[i])
+		if v == ' ' {
+			continue
+		}
 		if unicode.IsDigit(v) {
 			//如果v是数字，那么依靠进位递归得到完整的数字，例如“324”
 			number = number*10 + int(v-'0')
