@@ -74,6 +74,20 @@ func TestQueue(t *testing.T) {
 	Pop()
 }
 
+func TestOrder(t *testing.T) {
+	data := []struct {
+		a       []int
+		wanting []int
+	}{
+		{[]int{2, 1, 5, 3, 4}, []int{5, 4, 3, 1, 2}},
+	}
+
+	for _, v := range data {
+		if res := Order(v.a); !utility.EqualSliceInt(res, v.wanting) {
+			t.Errorf("Order(%v)=%v", v.a, res)
+		}
+	}
+}
 func TestSolve(t *testing.T) {
 	data := []struct {
 		s       string
