@@ -5,6 +5,39 @@ import (
 	"testing"
 )
 
+func TestCalculate1(t *testing.T) {
+	data := []struct {
+		s       string
+		wanting int
+	}{
+		{"(1+2)+1", 4},
+		{"-1", -1},
+	}
+
+	for _, v := range data {
+		if res := Calculate1(v.s); res != v.wanting {
+			t.Errorf("Calculate1(%v)=%v", v.s, res)
+		}
+	}
+}
+
+func TestCalculate2(t *testing.T) {
+	data := []struct {
+		s       string
+		wanting int
+	}{
+		{"(1+2)+1", 4},
+		{"-1", -1},
+		{"(2*3+1)+(1*2-1)", 8},
+	}
+
+	for _, v := range data {
+		if res := Calculate2(v.s); res != v.wanting {
+			t.Errorf("Calculate1(%v)=%v", v.s, res)
+		}
+	}
+}
+
 func TestIsValid(t *testing.T) {
 	data := []struct {
 		s       string
@@ -88,13 +121,15 @@ func TestOrder(t *testing.T) {
 		}
 	}
 }
+
 func TestSolve(t *testing.T) {
 	data := []struct {
 		s       string
 		wanting int
 	}{
-		//{"1+2", 3},
+		{"1+2", 3},
 		{"(2 + 3 * 4) + 4", 18},
+		{"-1", -1},
 	}
 
 	for _, v := range data {
