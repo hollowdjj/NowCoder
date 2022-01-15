@@ -38,6 +38,24 @@ func TestCalculate2(t *testing.T) {
 	}
 }
 
+func TestDecodeString(t *testing.T) {
+	data := []struct {
+		s       string
+		wanting string
+	}{
+		{"3[a]", "aaa"},
+		{"3[3[a]]", "aaaaaaaaa"},
+		{"abc", "abc"},
+		{"3[a]abc", "aaaabc"},
+		{"c3[a]a3[c]", "caaaaccc"},
+	}
+	for _, v := range data {
+		if res := DecodeString(v.s); res != v.wanting {
+			t.Errorf("DecodeString(%v)=%v", v.s, res)
+		}
+	}
+}
+
 func TestIsValid(t *testing.T) {
 	data := []struct {
 		s       string
