@@ -157,3 +157,20 @@ func TestSolve(t *testing.T) {
 	}
 
 }
+
+func TestIsValidString(t *testing.T) {
+	data := []struct {
+		s       string
+		wanting bool
+	}{
+		{"()()", true},
+		{"((*)", false},
+		{"(*)", true},
+	}
+
+	for _, v := range data {
+		if res := IsValidString(v.s); !res {
+			t.Errorf("IsValidString(%v)=%v", v.s, res)
+		}
+	}
+}
