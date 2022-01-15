@@ -81,6 +81,24 @@ func TestMaxArea(t *testing.T) {
 	}
 }
 
+func TestMaximalRectangle(t *testing.T) {
+	data := []struct {
+		matrix  [][]int
+		wanting int
+	}{
+		{[][]int{{1}}, 1},
+		{[][]int{{1, 1}, {0, 1}}, 2},
+		{[][]int{{0, 0}, {0, 0}}, 0},
+		{[][]int{{1, 0, 1, 0, 0}, {1, 1, 1, 1, 0}, {1, 1, 1, 1, 1}, {1, 0, 0, 1, 0}}, 8},
+	}
+
+	for _, v := range data {
+		if res := MaximalRectangle(v.matrix); res != v.wanting {
+			t.Errorf("MaximalRectangle(%v)=%v", v.matrix, res)
+		}
+	}
+}
+
 func TestPrint(t *testing.T) {
 	data := []struct {
 		s       []int
