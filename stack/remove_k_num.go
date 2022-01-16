@@ -26,7 +26,7 @@ func RemoveKNums(num string, k int) string {
 	var s utility.Stack
 	for _, c := range num {
 		digit := (int)(c - '0')
-		if !s.Empty() && k > 0 && (*s.Top()).(int) > digit {
+		for !s.Empty() && k > 0 && (*s.Top()).(int) > digit {
 			s.Pop()
 			k--
 		}
@@ -37,16 +37,20 @@ func RemoveKNums(num string, k int) string {
 		s.Pop()
 		k--
 	}
-	//将栈中的数字pop到一个[]byte中
+	//组成数字字符串
 	var temp utility.Stack
 	for !s.Empty() {
 		temp.Push((*s.Pop()).(int))
 	}
-	var res []string
+	var build strings.Builder
 	for !temp.Empty() {
-		res = append(res, strconv.Itoa((*temp.Pop()).(int)))
+		build.WriteString(strconv.Itoa((*temp.Pop()).(int)))
 	}
-	result := strings.Join(res, "")
+	result := build.String()
 	//删除前导0
-	return strings.TrimLeft(result, "0")
+	result = strings.TrimLeft(result, "0")
+	if result == "" {
+		return "0"
+	}
+	return result
 }
