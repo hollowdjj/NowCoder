@@ -21,7 +21,7 @@ func foundMonotoneStackClassic(nums []int) [][]int {
 			res[i][0] = -1
 		} else {
 			//否则，nums[i]左边第一个小于它的数的索引为s.Top()
-			res[i][0] = nums[(*s.Top()).(int)]
+			res[i][0] = (*s.Top()).(int)
 		}
 		s.Push(i)
 	}
@@ -38,7 +38,7 @@ func foundMonotoneStackClassic(nums []int) [][]int {
 			res[i][1] = -1
 		} else {
 			//否则，nums[i]右边第一个小于它的数的索引为s.Top()
-			res[i][1] = nums[(*s.Top()).(int)]
+			res[i][1] = (*s.Top()).(int)
 		}
 		s.Push(i)
 	}
@@ -72,6 +72,7 @@ func foundMonotoneStack(nums []int) [][]int {
 			i++
 		}
 	}
+	//对[3,4,1,5,6,2,7]而言，最后剩下的是[1,2,7]。即1是2之前最小的那个数，而2 7是一个升序序列
 	for !s.Empty() {
 		top := (*s.Pop()).(int)
 		left, right := -1, -1
