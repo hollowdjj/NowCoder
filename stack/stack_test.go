@@ -143,6 +143,22 @@ func TestQueue(t *testing.T) {
 	Pop()
 }
 
+func TestEvalReversePolishNotation(t *testing.T) {
+	data := []struct {
+		tokens  []string
+		wanting int
+	}{
+		{[]string{"2", "1", "-"}, 1},
+		{[]string{"2", "-1", "/", "3", "-"}, -5},
+	}
+
+	for _, v := range data {
+		if res := EvalReversePolishNotation(v.tokens); res != v.wanting {
+			t.Errorf("EvalReversePolishNotation(%v)=%v", v.tokens, res)
+		}
+	}
+}
+
 func TestOrder(t *testing.T) {
 	data := []struct {
 		a       []int
