@@ -143,6 +143,23 @@ func TestQueue(t *testing.T) {
 	Pop()
 }
 
+func TestRemoveKNums(t *testing.T) {
+	data := []struct {
+		num     string
+		k       int
+		wanting string
+	}{
+		//{"1432219", 3, "1219"},
+		{"1000011", 2, "1"},
+	}
+
+	for _, v := range data {
+		if res := RemoveKNums(v.num, v.k); res != v.wanting {
+			t.Errorf("RemoveKNums(%v,%v)=%v", v.num, v.k, res)
+		}
+	}
+}
+
 func TestEvalReversePolishNotation(t *testing.T) {
 	data := []struct {
 		tokens  []string
