@@ -11,7 +11,8 @@ import "nowcoder/utility"
 func IsSymmetry(root *utility.TreeNode) bool {
 	/*
 		如下图所示，当一颗二叉树是对称二叉树时。对一个节点的两个子节点left和right有如下要求：
-		2. left.Left.Val == right.Right.Val && left.Right.Val == right.Left.Val
+		left.Left.Val == right.Right.Val && left.Right.Val == right.Left.Val
+		也就是说，left的左子树必须和right的右子树一样，而left的右子树必须和right的左子树一样
 							1
 						2       2
 					 3     4 4     3
