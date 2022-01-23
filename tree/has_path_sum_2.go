@@ -30,7 +30,7 @@ func HasPathSum2(root *utility.TreeNode, expectNumber int) [][]int {
 				当我们得到了答案[5,8,4,5]时，此时底层数组为[5,8,4,5]。然后，在回溯并
 				开始递归4的右子树时,path引用的是底层数组的前三个元素，即[5,8,4]。此时，
 				再append 1进去，由于底层数组还有空间，从而底层数组变成了[5,8,4,1]。
-				进而导致结果错误。
+				因为，原来的path引用的是底层的数组的所有元素，现在底层数组变了，结果也了。
 			*/
 			temp := make([]int, len(path))
 			copy(temp, path)
