@@ -28,20 +28,20 @@ func (t *TreeNode) LevelOrder() (res []int) {
 	//创建一个队列
 	q := CreateQueue()
 	//头结点入队
-	q.Enqueue(t)
+	q.Push(t)
 
-	for !q.IsEmpty() {
+	for !q.Empty() {
 		//首元素出队
-		node := (*q.Dequeue()).(*TreeNode)
+		node := (*q.Pop()).(*TreeNode)
 		if node == nil {
 			res = append(res, '#')
 		} else {
 			res = append(res, node.Val)
 			if !(node.Left == nil && node.Right == nil) {
 				//左子节点入队
-				q.Enqueue(node.Left)
+				q.Push(node.Left)
 				//右子节点入队
-				q.Enqueue(node.Right)
+				q.Push(node.Right)
 			}
 		}
 	}

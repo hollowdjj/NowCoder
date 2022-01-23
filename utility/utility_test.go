@@ -48,17 +48,17 @@ func TestEqualTwoDimSlice(t *testing.T) {
 
 func TestQueue(t *testing.T) {
 	q := CreateQueue()
-	q.Enqueue(1)
-	q.Enqueue(2)
-	q.Enqueue(3)
-	q.Enqueue(4)
-	fmt.Printf("Pop: %d\t", *q.Dequeue())
+	q.Push(1)
+	q.Push(2)
+	q.Push(3)
+	q.Push(4)
+	fmt.Printf("Pop: %d\t", *q.Pop())
 	fmt.Printf("Size: %d\n", q.Size())
-	fmt.Printf("Pop: %d\t", *q.Dequeue())
+	fmt.Printf("Pop: %d\t", *q.Pop())
 	fmt.Printf("Size: %d\n", q.Size())
-	fmt.Printf("Pop: %d\t", *q.Dequeue())
+	fmt.Printf("Pop: %d\t", *q.Pop())
 	fmt.Printf("Size: %d\n", q.Size())
-	fmt.Printf("Pop: %d\t", *q.Dequeue())
+	fmt.Printf("Pop: %d\t", *q.Pop())
 	fmt.Printf("Size: %d\n", q.Size())
 }
 
