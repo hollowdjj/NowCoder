@@ -1,9 +1,5 @@
 package utility
 
-/*
-QueueInt一个元素类型为int的队列
-*/
-
 type Queue struct {
 	slots []interface{}
 }
