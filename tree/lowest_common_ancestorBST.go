@@ -23,7 +23,8 @@ func LowestCommonAncestorBST(root *TreeNode, p, q int) int {
 			root = root.Left
 		} else {
 			//如何p和q在root的左右两边，那么root就是它们的最近公共祖先
-			return root.Val
+			break
 		}
 	}
+	return root.Val
 }
