@@ -14,7 +14,7 @@ import (
 func DecodeString(s string) string {
 	var str string
 	number := 0
-	var res string
+	builder := strings.Builder{}
 	n := len(s)
 	for i := 0; i < n; i++ {
 		c := rune(s[i])
@@ -40,15 +40,13 @@ func DecodeString(s string) string {
 		if !unicode.IsDigit(c) || i == n-1 {
 			if number != 0 {
 				str = strings.Repeat(str, number)
-			}
-			if c == '[' {
-				res = res + str
+				builder.WriteString(str)
 			} else {
-				res = res + str + string(c)
+				builder.WriteRune(c)
 			}
 			number = 0
 			str = ""
 		}
 	}
-	return res
+	return builder.String()
 }
