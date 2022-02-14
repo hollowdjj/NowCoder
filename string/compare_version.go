@@ -36,8 +36,8 @@ func Compare(version1 string, version2 string) int {
 	}
 
 	for i := 0; i < len(vals1); i++ {
-		v1 := getNum(vals1[i])
-		v2 := getNum(vals2[i])
+		v1 := getNum1(vals1[i])
+		v2 := getNum1(vals2[i])
 		if v1 > v2 {
 			return 1
 		} else if v1 < v2 {
@@ -47,10 +47,77 @@ func Compare(version1 string, version2 string) int {
 	return 0
 }
 
-func getNum(str string) int {
+func getNum1(str string) int {
 	num := 0
 	n := len(str)
 	for i := 0; i < n; i++ {
+		num = num*10 + int(str[i]-'0')
+	}
+	return num
+}
+
+//空间复杂度O(1)，时间复杂度O(n)
+func compare(version1 string, version2 string) int {
+	n1, n2 := len(version1), len(version2)
+	i, j := 0, 0
+	for i < n1 && j < n2 {
+		k := i
+		for ; k < n1; k++ {
+			if version1[k] == '.' {
+				break
+			}
+		}
+		val1 := getNum(version1, i, k)
+		i = k + 1
+		m := j
+		for ; m < n2; m++ {
+			if version2[m] == '.' {
+				break
+			}
+		}
+		val2 := getNum(version2, j, m)
+		j = m + 1
+		if val1 > val2 {
+			return 1
+		}
+		if val1 < val2 {
+			return -1
+		}
+	}
+	for i < n1 {
+		k := i
+		for ; k < n1; k++ {
+			if version1[k] == '.' {
+				break
+			}
+		}
+		val1 := getNum(version1, i, k)
+		i = k + 1
+		//这里与第一个版本里的往数组中添加0是异曲同工。即当version2的长度小于version1时
+		//version1后续的数字直接和0比。因为1，其实就是1.0.0.0 ....
+		if val1 > 0 {
+			return 1
+		}
+	}
+	for j < n2 {
+		m := j
+		for ; m < n2; m++ {
+			if version2[m] == '.' {
+				break
+			}
+		}
+		val2 := getNum(version2, j, m)
+		j = m + 1
+		if val2 > 0 {
+			return -1
+		}
+	}
+	return 0
+}
+
+func getNum(str string, start, end int) int {
+	num := 0
+	for i := start; i < end; i++ {
 		num = num*10 + int(str[i]-'0')
 	}
 	return num
