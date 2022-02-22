@@ -17,7 +17,7 @@ func Search(nums []int, target int) int {
 			return i - 1
 		}
 		if nums[i] < nums[i-1] {
-			if target > nums[i-1] || target > nums[n-1] || target < nums[i] {
+			if target > nums[i-1] || target < nums[i] || target > nums[n-1] {
 				//此时nums[i]为数组的最小值，nums[i-1]为数组的最大值
 				return -1
 			}
