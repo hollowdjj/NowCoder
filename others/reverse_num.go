@@ -1,7 +1,5 @@
 package others
 
-import "math"
-
 /*
 反转数字
 给定一个32位的有符号整数num，将num中的数字部分反转，最后返回反转的结果
@@ -13,20 +11,22 @@ import "math"
 -2^31 <= x <= 2^31-1
 */
 func Reverse(x int) int {
-	flag := 1
+	var flag int32 = 1
 	if x < 0 {
 		x = -x
 		flag = -1
 	}
-	res := 0
+	var res int32 = 0
 	for x > 0 {
-		res = res*10 + x%10
+		//由于不允许使用64位数字存储，所以每次都要判断一下结果是否溢出
+		tail := int32(x % 10)
+		newRes := res*10 + tail
+		if (newRes-tail)/10 != res {
+			return 0
+		}
+		res = newRes
 		x /= 10
 	}
 	res *= flag
-	if res > math.MaxInt32 || res < math.MinInt32 {
-		return 0
-	}
-
-	return res
+	return int(res)
 }
