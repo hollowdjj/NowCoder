@@ -33,6 +33,7 @@ func MinNumberInRotateArrayAdvanced(rotateArray []int) int {
 			//说明右数组无序，往右数组找
 			left = mid + 1
 		} else {
+			//rotateArray[mid] == rotateArray[right] [3,4,2,2,2]
 			right--
 		}
 	}
