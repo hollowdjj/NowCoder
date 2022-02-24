@@ -1,4 +1,4 @@
-package others
+package array
 
 /*
 跳跃游戏(一)
