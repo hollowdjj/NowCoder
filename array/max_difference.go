@@ -1,4 +1,4 @@
-package others
+package array
 
 /*
 最大差值
