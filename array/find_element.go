@@ -11,18 +11,21 @@ package array
 
 func FindElement(mat [][]int, n int, m int, x int) []int {
 	i := 0
+	bound := m
 	res := make([]int, 2)
 	for ; i < n; i++ {
 		if mat[i][0] > x || mat[i][m-1] < x {
 			continue
 		}
 		if mat[i][m-1] >= x {
-			//使用二分法找到mat[i]中第一个大于等于x的元素的索引
-			j := find(mat[i], x)
+			//使用二分法找到mat[i][0:bound]中第一个大于等于x的元素的索引
+			j := find(mat[i][:bound], x)
 			if mat[i][j] == x {
 				res[0] = i
 				res[1] = j
 				break
+			} else {
+				bound = j
 			}
 		}
 	}
@@ -45,5 +48,8 @@ func find(arr []int, x int) int {
 		}
 	}
 
+	if arr[left] < x {
+		left++
+	}
 	return left
 }
