@@ -555,3 +555,18 @@ func TestSort(t *testing.T) {
 		}
 	}
 }
+
+func TestPermuteUnique(t *testing.T) {
+	data := []struct {
+		arr     []int
+		wanting [][]int
+	}{
+		{[]int{2, 2, -1}, [][]int{{-1, 2, 2}, {2, -1, 2}, {2, 2, -1}}},
+	}
+
+	for _, v := range data {
+		if res := PermuteUnique(v.arr); !utility.EqualTwoDimSlice(res, v.wanting) {
+			t.Errorf("PermutaUnique(%v)=%v", v.arr, res)
+		}
+	}
+}

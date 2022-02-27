@@ -45,7 +45,11 @@ func PermuteUnique(num []int) [][]int {
 			//	path = append(path,num[:i]...)
 			//	res = append(res,path)
 			//}
-			//所以下面这个条件判断就是从
+			//以[1,1,2]为例：
+			//1. i == 0时，得到[1,1,2]，回溯回来后，used为[false,false,false]
+			//2. i == 1时，path为[1]，然后进入下一层backtrack，由于此时used为[false,true,false]故第一个1会被跳过，选择了2后
+			//才会选择1。
+			//3. i == 2时 ...........
 			if used[i] || i > 0 && num[i] == num[i-1] && !used[i-1] {
 				continue
 			}
