@@ -1,6 +1,7 @@
 package array
 
 import (
+	"fmt"
 	"nowcoder/utility"
 	"testing"
 )
@@ -568,5 +569,13 @@ func TestPermuteUnique(t *testing.T) {
 		if res := PermuteUnique(v.arr); !utility.EqualTwoDimSlice(res, v.wanting) {
 			t.Errorf("PermutaUnique(%v)=%v", v.arr, res)
 		}
+	}
+}
+
+func TestMedianNum(t *testing.T) {
+	arr := []int{383, 886, 777, 915, 793, 335, 386, 492}
+	for _, v := range arr {
+		Insert(v)
+		fmt.Println(GetMedian())
 	}
 }
