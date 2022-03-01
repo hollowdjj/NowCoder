@@ -226,8 +226,8 @@ func TestMaxProduct(t *testing.T) {
 	}
 
 	for _, v := range data {
-		if res := MaxProduct(v.source); res != v.wanting {
-			t.Errorf("MaxProduct(%v)=%v", v.source, res)
+		if res := MaxProductOfThreeNum(v.source); res != v.wanting {
+			t.Errorf("MaxProductOfThreeNum(%v)=%v", v.source, res)
 		}
 	}
 }
