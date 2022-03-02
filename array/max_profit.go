@@ -1,6 +1,4 @@
-package easy
-
-import "fmt"
+package array
 
 /*
 假设你有一个数组prices，长度为n，其中prices[i]是股票在第i天的价格，请根据这个价格数组，返回买卖股票能获得的最大收益
@@ -16,22 +14,18 @@ import "fmt"
 要求：空间复杂度 O(1)，时间复杂度 O(n)
 */
 
-func maxProfit(prices []int) int {
+func MaxProfit(prices []int) int {
 	n := len(prices)
 	if n == 1 {
 		return 0
 	}
 
-	min, max := prices[0], -1
+	minVal, maxVal := prices[0], -1
 	for i := 1; i < n; i++ {
-		if prices[i] < min {
-			min = prices[i]
+		if prices[i] < minVal {
+			minVal = prices[i]
 		}
-		max = maxOfTwoInt(max, prices[i]-min)
+		maxVal = max(maxVal, prices[i]-minVal)
 	}
-	return max
-}
-
-func TestMaxProfit() {
-	fmt.Println(maxProfit([]int{8, 9, 2, 5, 4, 7, 1}))
+	return maxVal
 }
