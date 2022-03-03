@@ -14,7 +14,7 @@ import "strings"
 输出：["no wcoder","now coder"]
 */
 
-func WordDiv(s string, dic []string) []string {
+func WordDiv2(s string, dic []string) []string {
 	//题目的意思是，想办法把字符串s进行拆分，使得拆分出来的每个子串都能够在
 	//字符串集合dic中找到。这道题可以考虑利用dfs来解决。即固定1位往后递归
 	m := make(map[string]bool)
