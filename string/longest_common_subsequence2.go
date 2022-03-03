@@ -7,7 +7,7 @@ package string
 目前给出的数据，仅仅会存在一个最长的公共子序列
 */
 
-func LCS(s1, s2 string) string {
+func LCS2(s1, s2 string) string {
 	//dp[i][j]表示s1[0:i]与s2[0:j]的最长公共子序列。因此，状态转移方程为：
 	//1. s1[i-1] == s2[j-1]时，dp[i][j] = dp[i-1][j-1] + 1
 	//2. s1[i-1] != s2[j-1]时，dp[i][j] = Max{dp[i-1][j],dp[i][j-1]}
