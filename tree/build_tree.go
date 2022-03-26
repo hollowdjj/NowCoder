@@ -101,6 +101,7 @@ func work3(pre []int, preLeft, preRight int, post []int, postLeft, postRight int
 
 	//根节点
 	root := &TreeNode{Val: pre[preLeft]}
+	//必须有这个，否则preLeft+1会越界
 	if preLeft == preRight {
 		return root
 	}
