@@ -79,10 +79,10 @@ func work2(inorder []int, inLeft, inRight int, preorder []int, preLeft, preRight
 
 /*
 给定一个二叉树前序和后序遍历的结果，请你根据两个序列构造符合这两个序列的二叉树。
-例如输入[1,2,3,4,5]和[2,4,5,3,1]，构造出二叉树：
+例如输入[1,2,4,5,3,6,7]和[4,5,2,6,7,3,1]，构造出二叉树：
 							1
 						2		3
-							4		5
+					  4	  5	  6   7
 */
 func BuildTreeByPrevOrderAndPostOrder(pre []int, post []int) *TreeNode {
 	//记录post的中的元素与其索引
