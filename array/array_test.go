@@ -6,6 +6,10 @@ import (
 	"testing"
 )
 
+func TestBinarySearch(t *testing.T) {
+	BinarySearch([]int{1, 3, 6, 7, 8, 10, 11}, 9)
+}
+
 func TestCombinationSum2(t *testing.T) {
 	data := []struct {
 		source  []int
@@ -539,10 +543,10 @@ func TestSort(t *testing.T) {
 		arr     []int
 		wanting []int
 	}{
-		{[]int{5, 4, 3, 2, 1}, []int{1, 2, 3, 4, 5}},
-		{[]int{1, 2, 3, 4, 5}, []int{1, 2, 3, 4, 5}},
-		{[]int{2, 2, 2, 2, 2}, []int{2, 2, 2, 2, 2}},
-		{[]int{3, 2, 4, 5, 1, 5, 6, 12}, []int{1, 2, 3, 4, 5, 5, 6, 12}},
+		{[]int{3, 2, 4, 1, 5}, []int{1, 2, 3, 4, 5}},
+		//{[]int{1, 2, 3, 4, 5}, []int{1, 2, 3, 4, 5}},
+		//{[]int{2, 2, 2, 2, 2}, []int{2, 2, 2, 2, 2}},
+		//{[]int{3, 2, 4, 5, 1, 5, 6, 12}, []int{1, 2, 3, 4, 5, 5, 6, 12}},
 	}
 
 	for _, v := range data {
@@ -550,6 +554,9 @@ func TestSort(t *testing.T) {
 		temp = append(temp, v.arr...)
 		if res := MergeSort(v.arr); !utility.EqualSliceInt(res, v.wanting) {
 			t.Errorf("MergeSort(%v)=%v", temp, res)
+		}
+		if res := HeapSort(v.arr); !utility.EqualSliceInt(res, v.wanting) {
+			t.Errorf("HeapSort(%v)=%v", temp, res)
 		}
 		if res := HeapSort(v.arr); !utility.EqualSliceInt(res, v.wanting) {
 			t.Errorf("HeapSort(%v)=%v", temp, res)

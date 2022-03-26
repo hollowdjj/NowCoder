@@ -9,32 +9,23 @@ package array
 */
 
 func BinarySearch2(nums []int, target int) int {
+	//思路就是找到第一个小于target的元素，他的下一个元素就是target第一次出现的位置
 	n := len(nums)
 	if n == 0 {
 		return -1
 	}
 	left, right := 0, n-1
-	for left < right {
-		mid := (right + left) / 2
-		if nums[mid] < target {
-			left = mid + 1
-		} else if nums[mid] > target {
+	for left <= right {
+		mid := (left + right) / 2
+		if nums[mid] >= target {
 			right = mid - 1
 		} else {
-			//往mid的左边进行搜索，找到第一个目标值出现的位置
-			for i := mid; i >= 0; i-- {
-				if nums[i] != target {
-					return i + 1
-				}
-			}
-			return 0
+			left = mid + 1
 		}
 	}
 
-	if nums[left] != target {
-		//没找到返回-1
-		return -1
+	if nums[right+1] == target {
+		return right + 1
 	}
-	//对于[1,2,3]找3的情况
-	return left
+	return -1
 }

@@ -58,7 +58,7 @@ func SelectSort(arr []int) []int {
 	return arr
 }
 
-//快排，填坑式做法。最优O(nlogn)，最坏O(n^2)
+//快排，填坑式做法。最优O(nlogn)，最坏O(n^2)，是一种不稳定排序算法
 func QuickSort(arr []int) []int {
 	n := len(arr)
 	if n == 0 {
