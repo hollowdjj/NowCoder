@@ -49,6 +49,9 @@ func WordDivDp(s string, strs []string) bool {
 	for i := 1; i <= n; i++ {
 		for j := i - 1; j >= 0; j-- {
 			prefix := s[j:i]
+			//dp[j]其实就代表了s[0:j]的结果。因此，这里的意思其实就是s[0:j]和s[j:i]
+			//如果都是字典中的字符串的话，dp[i]=true。其实就是遍历可能的拆分点，拆分
+			//s[0:i]。
 			if dic[prefix] && dp[j] {
 				dp[i] = true
 				break
