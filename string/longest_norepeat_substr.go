@@ -14,6 +14,7 @@ func LongestNoRepeatSubstr(s string) int {
 	//双指针加哈希表。哈希表保存的是每个字符最新出现的位置
 	n := len(s)
 	dic := make(map[byte]int)
+	//这里left必须从-1开始。以"au"为例，当right为1时，这个时候长度是2。
 	left, right, res := -1, 0, 1
 	for right < n {
 		if index, ok := dic[s[right]]; ok {
