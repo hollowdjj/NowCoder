@@ -74,7 +74,9 @@ func ReverseKGroupAdvanced(head *utility.ListNode, k int) *utility.ListNode {
 		if count%k == 0 {
 			//翻转[nHead,head]子区间。即从nHead.Next开始，每遍历一个节点，就将其交换到prev.Next
 			for i := 1; i < k; i++ {
-				//将nHead.Next交换到prev.Next
+				//区间原地翻转，即将nHead.Next挂载到prev后面。其实就是依次把nHead后面的节点
+				//挂载到prev后面。以0 1 2 3为例，nHead指向1
+				//0 1 2 3 --> 0 2 1 3 --> 0 3 2 1。最后nHead就是区间的最后一个节点
 				next := nHead.Next     //保存nHead.Next
 				nHead.Next = next.Next //让nHead连接nHead.Next.Next
 				next.Next = prev.Next  //原nHead.Next连接至prev后面
