@@ -35,3 +35,25 @@ func WordDiv(s string, strs []string) bool {
 	dfs(0)
 	return res
 }
+
+func WordDivDp(s string, strs []string) bool {
+	//用回溯做，会超时。考虑使用动态规划。dp[i]表示s[0:i]能否拆分出字典中的单词
+	//dp[i] = true when dp[j] == true && strs.Contains(s[j:i]), where 0<=j<=i-1
+	dic := make(map[string]bool)
+	for _, str := range strs {
+		dic[str] = true
+	}
+
+	n := len(s)
+	dp := make([]bool, n+1)
+	for i := 1; i <= n; i++ {
+		for j := i - 1; j >= 0; j-- {
+			prefix := s[j:i]
+			if dic[prefix] && dp[j] {
+				dp[i] = true
+				break
+			}
+		}
+	}
+	return dp[n]
+}
