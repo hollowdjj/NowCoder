@@ -9,7 +9,6 @@ package string
 字符串长度：0≤n≤5∗10^5
 要求时间复杂度O(n),空间复杂度O(n)
 */
-
 func LongestValidParentheses(s string) int {
 	//dp[i]表示s[0:i]的最长格式正确括号子串长度。状态转移方程：
 	//当s[i] = '('时dp[i] = 0(因为必须要是连续子串)
