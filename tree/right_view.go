@@ -59,3 +59,22 @@ vector<int> solve(vector<int>& xianxu, vector<int>& zhongxu) {
         return root;
     }
 */
+
+func RightView(root *TreeNode) []int {
+	//要获取二叉树的右视图，那么我们就需要一直走右子节点
+	res := make([]int, 0)
+	var dfs func(root *TreeNode, i int)
+	dfs = func(root *TreeNode, i int) {
+		if root == nil || i > len(res) {
+			return
+		}
+		//类似于前序遍历，但是一直走右子节点。
+		if i == len(res) {
+			res = append(res, root.Val)
+		}
+		dfs(root.Right, i+1)
+		dfs(root.Left, i+1)
+	}
+	dfs(root, 0)
+	return res
+}
