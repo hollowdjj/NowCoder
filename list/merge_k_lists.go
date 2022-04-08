@@ -42,3 +42,33 @@ func mergeTwoLists(head1, head2 *utility.ListNode) *utility.ListNode {
 
 	return dummy.Next
 }
+
+/*
+另一个思路是使用优先队列。每次取出队头元素，加入到新链表尾部，然后将它的下一个元素
+放入有限队列中。
+
+ListNode* mergeKLists(vector<ListNode*>& lists) {
+        auto cmp = [](ListNode* lhs,ListNode* rhs) {
+            return lhs->val > rhs->val;
+        };
+        priority_queue<ListNode*,vector<ListNode*>,decltype(cmp)> q(cmp);
+        auto dummy = new ListNode(-1);
+        auto head = dummy;
+        for(int i = 0;i<lists.size();++i) {
+            if(lists[i]) {
+                q.push(lists[i]);
+            }
+
+        }
+        while(!q.empty()) {
+            auto top = q.top();
+            q.pop();
+            head->next = top;
+            if(top->next) {
+                q.push(top->next);
+            }
+            head = head->next;
+        }
+        return dummy->next;
+    }
+*/
