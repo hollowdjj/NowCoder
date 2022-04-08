@@ -1,7 +1,5 @@
 package list
 
-import "nowcoder/utility"
-
 /*
 描述
 将给定的单链表L0->L1->L2->L3......Ln，重排序为L0->Ln->L1->Ln-1....
@@ -12,46 +10,53 @@ import "nowcoder/utility"
 */
 
 //ReorderList 重排链表
-func ReorderList(head *utility.ListNode) {
-	if head == nil || head.Next == nil || head.Next.Next == nil {
-		return
-	}
-	//找到链表的中点
-	var prev *utility.ListNode
+func ReorderList(head *ListNode) {
+	//首先用快慢指针找到中点
+	var prev *ListNode
 	slow, fast := head, head
 	for fast != nil && fast.Next != nil {
-		fast = fast.Next.Next
 		prev = slow
 		slow = slow.Next
+		fast = fast.Next.Next
+
+	}
+
+	//断开链表
+	if prev == nil {
+		return
 	}
 	prev.Next = nil
-	prev = nil
-	//将后半部分的链表[slow,tail]翻转，翻转后的头节点为prev
-	for slow != nil {
-		next := slow.Next
-		slow.Next = prev
-		prev = slow
-		slow = next
-	}
-	//交叉合并两链表
-	dummy := &utility.ListNode{
-		Val:  -1,
-		Next: nil,
-	}
+
+	//翻转后半部分链表
+	head2 := reverse(slow)
+
+	//交叉合并
+	dummy := &ListNode{Val: -1}
 	nHead := dummy
-	for head != nil && prev != nil {
-		temp1 := head.Next
-		temp2 := prev.Next
+	for head != nil && head2 != nil {
 		nHead.Next = head
+		head = head.Next
 		nHead = nHead.Next
-		nHead.Next = prev
+		nHead.Next = head2
+		head2 = head2.Next
 		nHead = nHead.Next
-		head, prev = temp1, temp2
 	}
 	if head != nil {
 		nHead.Next = head
 	} else {
-		nHead.Next = prev
+		nHead.Next = head2
 	}
+
 	head = dummy.Next
+}
+
+func reverse(head *ListNode) *ListNode {
+	var prev *ListNode
+	for head != nil {
+		next := head.Next
+		head.Next = prev
+		prev = head
+		head = next
+	}
+	return prev
 }
