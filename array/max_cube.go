@@ -15,6 +15,8 @@ func MaxCube(matrix [][]int) int {
 	//1  1  0
 	//1  1  1
 	//1  1  1
+
+	//注意，这里dp是一个n+1 x m+1的矩阵，这样可以不用单独写base case
 	if len(matrix) == 0 {
 		return 0
 	}
