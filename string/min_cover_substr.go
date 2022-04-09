@@ -15,52 +15,47 @@ S ="XDOYEZODEYXNZ" T ="XYZ"
 满足条件的子串可能有很多，但是题目保证满足条件的最短的子串唯一。
 */
 
-func MinWindow(s string, t string) string {
+func minWindow(s string, t string) string {
+	n := len(t)
 	need := make(map[byte]int)
-	nt, ns := len(t), len(s)
-	for i := 0; i < nt; i++ {
+	for i := 0; i < n; i++ {
 		need[t[i]]++
 	}
+
+	n = len(s)
 	count := len(need)
-	left, right := 0, 0 //滑动窗口左右指针
-	start, length := 0, math.MaxInt32
+	left, right := 0, 0
 	window := make(map[byte]int)
-	for right < ns {
-		//滑动窗口right指针一直右移，直到滑动窗口中包含了所有t中的字符
-		for right < ns {
+	minL := math.MaxInt32
+	start := 0
+	for right < n {
+		for right < n && count > 0 {
+			//增大滑动窗口直到窗口中包含了所有t中的字符
 			c := s[right]
 			window[c]++
 			if window[c] == need[c] {
 				count--
-				if count == 0 {
-					break
-				}
 			}
 			right++
 		}
-
-		if count == 0 {
-			//往右移动滑动窗口的左指针，直到滑动窗口中的元素刚好覆盖t中的字符，然后更新结果
-			stop := false
-			for left <= right && !stop {
-				c := s[left]
-				if window[c] == need[c] {
-					//窗口无法缩小了，更新答案
-					if right-left+1 < length {
-						start = left
-						length = right - left + 1
-					}
-					stop = true
-					count++
+		//缩小滑动窗口到刚好能覆盖t中所有字符
+		for left < right && count == 0 {
+			c := s[left]
+			if window[c] == need[c] {
+				//不能再缩小了，更新结果
+				if right-left < minL {
+					minL = right - left
+					start = left
 				}
-				window[c]--
-				left++
+				count++
 			}
+			window[c]--
+			left++
 		}
-		right++
 	}
-	if length == math.MaxInt32 {
+
+	if minL == math.MaxInt32 {
 		return ""
 	}
-	return s[start : length+start]
+	return s[start : start+minL]
 }
