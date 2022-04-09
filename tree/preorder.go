@@ -22,24 +22,26 @@ func PreOrderTraversal(root *utility.TreeNode) []int {
 }
 
 //非递归实现二叉树的前序遍历
+//              1
+//         2         3
+//     4       5
 func PreOrderByLoop(root *TreeNode) []int {
-	if root == nil {
-		return nil
-	}
 	//使用栈模拟递归
-	stack := make([]*TreeNode, 0)
-	stack = append(stack, root)
 	res := make([]int, 0)
-	for len(stack) > 0 {
-		top := stack[len(stack)-1]
-		stack = stack[:len(stack)-1]
-		res = append(res, top.Val)
-		//栈是先入后出，所以前序遍历的话要先push右子节点
-		if top.Right != nil {
-			stack = append(stack, top.Right)
+	stack := make([]*TreeNode, 0)
+	for root != nil || len(stack) > 0 {
+		for root != nil {
+			//一直遍历左子树，直到叶子节点
+			res = append(res, root.Val)
+			stack = append(stack, root)
+			root = root.Left
 		}
-		if top.Left != nil {
-			stack = append(stack, top.Left)
+
+		//得到叶子节点的父节点，然后将他的右子节点入栈
+		if len(stack) > 0 {
+			top := stack[len(stack)-1]
+			stack = stack[:len(stack)-1]
+			root = top.Right
 		}
 	}
 	return res
