@@ -17,7 +17,7 @@ func FirstMissingPositive(nums []int) int {
 	//从而当nums[i] != i+1时，i+1就是缺失的第一个正数
 	n := len(nums)
 	for i := 0; i < n; i++ {
-		for nums[i] > 0 && nums[i] < n && nums[nums[i]-1] != nums[i] {
+		for nums[i] > 0 && nums[i] <= n && nums[nums[i]-1] != nums[i] {
 			nums[i], nums[nums[i]-1] = nums[nums[i]-1], nums[i]
 		}
 	}
