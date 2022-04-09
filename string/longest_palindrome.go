@@ -6,6 +6,7 @@ package string
 例如："ababc" 返回3
 说明：最长的回文子串为"aba"与"bab"，长度都为3
 */
+
 func LongestPalindrome(A string) int {
 	//dp[i][j]表示A[i...j]子串是否是一个回文字符串。因此，我们可以得到状态
 	//转移方程： dp[i][j] = dp[i+1][j-1] A[i] = A[j]且 j-i>=2
