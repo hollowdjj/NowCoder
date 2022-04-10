@@ -7,6 +7,7 @@ package string
 
 数据范围： 0≤n≤5000， 0≤len≤5000
 */
+
 func LongestCommonPrefix(strs []string) string {
 	//垂直扫描
 	n := len(strs)
