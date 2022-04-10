@@ -17,7 +17,7 @@ package string
 func LCS(s1, s2 string) int {
 	//dp[i][j]表示s1[0:i]和s2[0:j]最长公共子序列的长度，那么状态转移方程为：
 	//1.当s1[i-1]==s2[j-1]时，dp[i][j] = dp[i-1][j-1]+1
-	//2.当s1[i-1]!=s2[j-1]时，dp[i][j] = Max{dp[i-1][j-1],dp[i-1][j],dp[i][j-1]}
+	//2.当s1[i-1]!=s2[j-1]时，dp[i][j] = Max{dp[i-1][j],dp[i][j-1]}
 	n1, n2 := len(s1), len(s2)
 	dp := make([][]int, n1+1)
 	for i := 0; i <= n1; i++ {
@@ -29,7 +29,7 @@ func LCS(s1, s2 string) int {
 			if s1[i-1] == s2[j-1] {
 				dp[i][j] = dp[i-1][j-1] + 1
 			} else {
-				dp[i][j] = max(dp[i-1][j-1], max(dp[i-1][j], dp[i][j-1]))
+				dp[i][j] = max(dp[i-1][j], dp[i][j-1])
 			}
 		}
 	}
