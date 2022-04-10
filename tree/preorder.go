@@ -31,13 +31,13 @@ func PreOrderByLoop(root *TreeNode) []int {
 	stack := make([]*TreeNode, 0)
 	for root != nil || len(stack) > 0 {
 		for root != nil {
-			//一直遍历左子树，直到叶子节点
+			//一直遍历左子树，直到叶子节点。即1-->2-->4
 			res = append(res, root.Val)
 			stack = append(stack, root)
 			root = root.Left
 		}
 
-		//得到叶子节点的父节点，然后将他的右子节点入栈
+		//得到叶子节点的父节点，然后处理右子树。例如节点5
 		if len(stack) > 0 {
 			top := stack[len(stack)-1]
 			stack = stack[:len(stack)-1]
