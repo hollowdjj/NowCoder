@@ -20,6 +20,7 @@ func VerifySequenceOfBST(postorder []int) bool {
 			return false
 		}
 		for len(stack) > 0 && postorder[i] < stack[len(stack)-1] {
+			//在栈中找到大于postorder[i]的最小值，该值就是根节点
 			root = stack[len(stack)-1]
 			stack = stack[:len(stack)-1]
 		}
