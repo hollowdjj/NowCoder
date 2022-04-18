@@ -5,6 +5,12 @@ import (
 	"fmt"
 )
 
+type RandomListNode struct {
+	Label  int
+	Next   *RandomListNode
+	Random *RandomListNode
+}
+
 type ListNode struct {
 	Val  int
 	Next *ListNode
