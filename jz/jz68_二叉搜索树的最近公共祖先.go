@@ -13,6 +13,8 @@ package jz
 */
 
 func lowestCommonAncestor(root *TreeNode, p int, q int) int {
+	//这道题和二叉树最近公共祖先很相似。不同的是这里的二叉树是二叉搜索数，因此可以利用二叉
+	//搜索树的性质。
 	var dfs func(root *TreeNode) int
 	dfs = func(root *TreeNode) int {
 		if root == nil {
@@ -22,15 +24,12 @@ func lowestCommonAncestor(root *TreeNode, p int, q int) int {
 			return root.Val
 		}
 
-		left := dfs(root.Left)
-		right := dfs(root.Right)
-		if left != -1 && right != -1 {
-			return root.Val
+		if root.Val > p && root.Val > q {
+			return dfs(root.Left)
+		} else if root.Val < p && root.Val < q {
+			return dfs(root.Right)
 		}
-		if left != -1 {
-			return left
-		}
-		return right
+		return root.Val
 	}
 	return dfs(root)
 }
