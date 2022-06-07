@@ -8,7 +8,7 @@ package jz_II
 输出: true
 */
 func isAnagram(s string, t string) bool {
-	if s == t {
+	if len(s) != len(t) || s == t {
 		return false
 	}
 	dic := make(map[rune]int)
