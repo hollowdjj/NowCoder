@@ -16,3 +16,10 @@ func TestAddBinary(t *testing.T) {
 		}
 	}
 }
+
+func TestIncreasingBST(t *testing.T) {
+	root := &TreeNode{Val: 5}
+	root.Right = &TreeNode{Val: 6}
+	root.Left = &TreeNode{Val: 3}
+	IncreasingBST(root)
+}
