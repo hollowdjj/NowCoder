@@ -36,7 +36,13 @@ func divide1(a int, b int) int {
 }
 
 func divide2(a, b int) int {
-	//采用二分法
+	//此题是要我们求截取小数部分的除法，因此就是求a中有多少个b。
+	//考虑采用二分法求解，基本思想为: 若 a > b * 2^k，那么res += 2^k
+	//例如：15/2
+	//1. 15 > 2 * 2^2，故res += 2^2 = 4
+	//2. 15-2* 2^2 = 7。  7 > 2 * 2^1，故res += 2^1 = 6
+	//3. 7-2*2^1=3。 3 > 2 * 2^0，故res += 2^0 = 7
+	//4. 3-2*2^0=1。 1 < b, 停止。
 	MIN, MAX := math.MinInt32, math.MaxInt32
 	if a == MIN && b == -1 {
 		return MAX
@@ -51,12 +57,12 @@ func divide2(a, b int) int {
 	a, b = abs(a), abs(b)
 	res := 0
 	for b <= a {
+		//t = b * 2^k, c = 2^k。初始k=0
 		t, c := b, 1
 		for t < MAX>>1 && t+t <= a {
 			t += t
 			c += c
 		}
-		//例如15/2跳出上一个循环时，t=8 c=4，此时15-8=7还可以继续除2
 		a -= t
 		res += c
 	}
