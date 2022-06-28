@@ -10,3 +10,10 @@ type TreeNode struct {
 	Left  *TreeNode
 	Right *TreeNode
 }
+
+type Node struct {
+	Val   int
+	Prev  *Node
+	Next  *Node
+	Child *Node
+}
