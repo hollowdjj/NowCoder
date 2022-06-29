@@ -11,18 +11,18 @@ package jz_II
 */
 func rob(nums []int) int {
 	//dp[i]表示只在前i个房屋偷盗，能盗取的最高金额，状态转移方程为：
-	//dp[i] = Max{dp[j], where 0<=j<i-1} + nums[i]
+	//dp[i] = max(dp[i-2]+nums[i],dp[i-1])
 	n := len(nums)
+	if n == 1 {
+		return nums[0]
+	} else if n == 2 {
+		return max(nums[0], nums[1])
+	}
 	dp := make([]int, n)
 	dp[0] = nums[0]
-	for i := 1; i < n; i++ {
-		prevMax := 0
-		for j := 0; j < i-1; j++ {
-			if dp[j] > prevMax {
-				prevMax = dp[j]
-			}
-		}
-		dp[i] = max(prevMax+nums[i], dp[i-1])
+	dp[1] = max(nums[0], nums[1])
+	for i := 2; i < n; i++ {
+		dp[i] = max(dp[i-2]+nums[i], dp[i-1])
 	}
 	return dp[n-1]
 }
