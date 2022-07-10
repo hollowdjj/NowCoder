@@ -42,3 +42,26 @@ func coinChange(coins []int, target int) int {
 	}
 	return res
 }
+
+func coinChange1(coins []int, target int) int {
+	//可以看到dp[i]只与dp[i-1]有关，因此可以使用一维滚动数组进行状态压缩
+	//此时，dp[i]可以理解为，使用所有硬币凑i的最少硬币数
+	dp := make([]int, target+1)
+	for i := 0; i <= target; i++ {
+		dp[i] = target + 1
+	}
+	dp[0] = 0
+	n := len(coins)
+	for i := 1; i <= target; i++ {
+		for j := 0; j < n; j++ {
+			if i >= coins[j] {
+				//这里dp[i]的当前值其实就是dp[i-1][j]
+				dp[i] = min(dp[i-coins[j]]+1, dp[i])
+			}
+		}
+	}
+	if dp[target] == target+1 {
+		return -1
+	}
+	return dp[target]
+}
