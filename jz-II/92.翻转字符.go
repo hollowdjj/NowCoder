@@ -10,6 +10,29 @@ package jz_II
 输入：s = "00110"
 输出：1
 */
-func minFlipsMonoIncr(s string) int {
 
+func minFlipsMonoIncr(s string) int {
+	//dp[i][0]表示s[i]为0时，将s[0...i]变为单调递增所需的最少翻转次数
+	//dp[i][1]表示s[i]为1时，将s[0...i]变为单调递增所需的最少翻转次数
+	n := len(s)
+	dp := make([][2]int, n)
+	if s[0] == '1' {
+		dp[0][0] = 1
+		dp[0][1] = 0
+	} else {
+		dp[0][0] = 0
+		dp[0][1] = 1
+	}
+	for i := 1; i < n; i++ {
+		dp[i][0] = dp[i-1][0]
+		if s[i] == '1' {
+			dp[i][0]++
+		}
+		dp[i][1] = min(dp[i-1][0], dp[i-1][1])
+		if s[i] == '0' {
+			dp[i][1]++
+		}
+	}
+
+	return min(dp[n-1][0], dp[n-1][1])
 }
