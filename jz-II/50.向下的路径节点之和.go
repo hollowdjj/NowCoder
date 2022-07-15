@@ -25,7 +25,7 @@ func dfs50(root *TreeNode, sum int, targetSum int) int {
 	if sum == targetSum {
 		res++
 	}
-	res += dfs(root.Left, sum, targetSum)
-	res += dfs(root.Right, sum, targetSum)
+	res += dfs50(root.Left, sum, targetSum)
+	res += dfs50(root.Right, sum, targetSum)
 	return res
 }
