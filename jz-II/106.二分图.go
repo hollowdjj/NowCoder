@@ -16,6 +16,12 @@ package jz_II
 如果图是二分图，返回 true ；否则，返回 false 。
 */
 
+/*
+染色法。任意选取一个节点，将其染为红色，然后将所有与其相连的节点染成绿色。
+遍历到某一节点时，如果节点已经被染色了，且颜色和将要给他染的颜色不一致，那么
+说明不能构成二分图。
+*/
+
 func isBipartiteBFS(graph [][]int) bool {
 	color := make([]int, len(graph))
 	bfs := func(start int) bool {
