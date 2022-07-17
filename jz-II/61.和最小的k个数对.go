@@ -9,10 +9,6 @@ package jz_II
 输出: [1,2],[1,4],[1,6]
 解释: 返回序列中的前 3 对数：
     [1,2],[1,4],[1,6],[7,2],[7,4],[11,2],[7,6],[11,4],[11,6]
-
-来源：力扣（LeetCode）
-链接：https://leetcode.cn/problems/qn8gGX
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
 func kSmallestPairs(nums1 []int, nums2 []int, k int) [][]int {
 	res := make([][]int, 0)
