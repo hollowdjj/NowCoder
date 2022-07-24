@@ -87,3 +87,29 @@ func longestValidParentheses(s string) int {
 	}
 	return maxLength
 }
+
+func longestValidParentheses1(s string) int {
+	//由于是求最长有效括号子串的长度，栈中需要保存当前遍历到的子串中
+	//最后一个没有左括号与之匹配的右括号。遇到"("就将其下标压栈，遇
+	//到")"括号时，若栈为空，说明这就是当前最后一个没有左括号与之匹配
+	//的右括号，将其下标压栈。若栈不为空，那么弹出栈顶元素并计算最大长度
+	stack := []int{-1} //())()
+	res := 0
+	for i, b := range s {
+		if b == '(' {
+			//遇到左括号就压栈
+			stack = append(stack, i)
+		} else {
+			//弹出栈顶元素
+			stack = stack[:len(stack)-1]
+			//()()弹出第二个左括号，那么长度就是3-1=2
+			if len(stack) > 0 {
+				res = max(res, i-stack[len(stack)-1])
+			} else {
+				//())()
+				stack = append(stack, i)
+			}
+		}
+	}
+	return res
+}
