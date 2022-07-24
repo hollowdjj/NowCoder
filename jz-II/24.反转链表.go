@@ -10,3 +10,16 @@ func reverseList(head *ListNode) *ListNode {
 	}
 	return prev
 }
+
+func reverseList1(head *ListNode) *ListNode {
+	var dfs func(prev, curr *ListNode) *ListNode
+	dfs = func(prev, curr *ListNode) *ListNode {
+		if curr == nil {
+			return prev
+		}
+		next := curr.Next
+		curr.Next = prev
+		return dfs(curr, next)
+	}
+	return dfs(nil, head)
+}
