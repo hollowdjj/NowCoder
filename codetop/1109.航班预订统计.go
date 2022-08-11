@@ -1,4 +1,4 @@
-package leetcode
+package codetop
 
 /*
 这里有 n 个航班，它们分别从 1 到 n 进行编号。
@@ -23,7 +23,7 @@ func corpFlightBookings(bookings [][]int, n int) []int {
 	//arr = [1,2,3,4]的差分数组为num = [1,1,1,1]。即num[i] = arr[i] - arr[i-1]
 	//差分数组的前缀和就是原数组。当我们对原数组区间[l,r]中的元素都加x后，为了维护差分数组
 	//的正确性，num[l] += x，num[r+1] -= x。这是因为，num[l] += x，相当于把arr[l:]中的
-	//所有数都加x，所以num[r+1]要减x，这样arr[r+1]与arr[r]的差就少了x，差分数组才是真确的。
+	//所有数都加x，所以num[r+1]要减x，这样arr[r+1]与arr[r]的差就少了x，差分数组才是正确的。
 	nums := make([]int, n)
 	//构建差分数组
 	for _, book := range bookings {
