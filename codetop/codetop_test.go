@@ -18,3 +18,19 @@ func TestSubString(t *testing.T) {
 		}
 	}
 }
+
+func TestCommonPrefix(t *testing.T) {
+	data := []struct {
+		strs    []string
+		prevfix string
+		wanting []string
+	}{
+		{[]string{"ab", "abc", "acbcd"}, "ab", []string{"ab", "abc"}},
+	}
+
+	for i := range data {
+		if res := CommonPrefix(data[i].strs, data[i].prevfix); !EqualStringSlice(res, data[i].wanting) {
+			t.Errorf("strs: %v\nprefix: %s\nwant: %v\nget: %v", data[i].strs, data[i].prevfix, data[i].wanting, res)
+		}
+	}
+}

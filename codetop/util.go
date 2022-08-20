@@ -31,3 +31,17 @@ func max(a, b int) int {
 	}
 	return b
 }
+
+func EqualStringSlice(s1, s2 []string) bool {
+	if len(s1) != len(s2) {
+		return false
+	}
+	dic := make(map[string]int)
+	for i := range s1 {
+		dic[s1[i]]++
+	}
+	for i := range s1 {
+		delete(dic, s2[i])
+	}
+	return len(dic) == 0
+}
