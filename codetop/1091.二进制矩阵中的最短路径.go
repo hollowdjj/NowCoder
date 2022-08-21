@@ -37,6 +37,8 @@ func shortestPathBinaryMatrix(grid [][]int) int {
 	q := [][2]int{{0, 0}}
 	visited[0][0] = true
 	for len(q) > 0 {
+		//这里一定要注意，在计算最小步数的时候，遍历完当前队列中的
+		//所有元素才算一步。因此，下面必须有个循环。
 		step++
 		size := len(q)
 		for i := 0; i < size; i++ {
