@@ -21,6 +21,7 @@ func minEatingSpeed(piles []int, h int) int {
 			maxVal = num
 		}
 	}
+	//二分法找到最后一个不能吃完所有香蕉的速度
 	left, right := 1, maxVal
 	for left <= right {
 		mid := (left + right) / 2
