@@ -1,5 +1,7 @@
 package jz
 
+import "strings"
+
 /*
 请实现一个函数用来判断字符串str是否表示数值（包括科学计数法的数字，小数和整数）。
 
@@ -29,43 +31,43 @@ package jz
 但是["12e","1a3.14","1.2.3","+-5","12e+4.3"]都不是数值。
 */
 
-func isNumeric(str string) bool {
-	n := len(str)
-	left, right := 0, n-1
-	for left < right && str[left] == ' ' {
-		left++
-	}
-	for left < right && str[right] == ' ' {
-		right--
-	}
-
-	hasDot, hasNum, hasE, hasSign := false, false, false, false
-	for left <= right {
-		c := str[left]
-		if c == '.' {
-			//小数点符号只能出现一次，并且必须出现在符号E之前
+func isNumber(s string) bool {
+	//去掉首尾空格
+	s = strings.TrimLeft(s, " ")
+	s = strings.TrimRight(s, " ")
+	hasNum, hasDot, hasSign, hasE := false, false, false, false
+	for _, ch := range s {
+		if ch == ' ' {
+			//空格只能出现在首尾
+			return false
+		} else if ch == '.' {
+			//'.'只能出现一次，并且只能出现在E后面
 			if hasDot || hasE {
 				return false
 			}
 			hasDot = true
-		} else if c == '+' || c == '-' {
-			//符号前面不能有符号，数字以及小数点
-			if hasSign || hasNum || hasDot {
-				return false
-			}
-			hasSign = true
-		} else if c == 'E' || c == 'e' {
+		} else if ch == 'e' || ch == 'E' {
+			//'E'只能出现一次，并且E前面必须有数字
 			if hasE || !hasNum {
 				return false
 			}
+			//'E'出现后，要把hasNum,hasSign,hasDot置为false
+			//这是因为E后面必须有数字（hasNum置为false），可能有符号(hasSign置为false)
+			//hasDot置为false是因为判断有无字符时，hasNum || hasSign || hasDot
 			hasE = true
-			hasDot, hasNum, hasSign = false, false, false
-		} else if c <= '9' && c >= '0' {
+			hasNum, hasSign, hasDot = false, false, false
+		} else if ch <= '9' && ch >= '0' {
 			hasNum = true
+		} else if ch == '+' || ch == '-' {
+			//+ - 前面不能有数组、符号以及小数点
+			if hasNum || hasSign || hasDot {
+				return false
+			}
+			hasSign = true
 		} else {
 			return false
 		}
-		left++
 	}
+	//必须有数字
 	return hasNum
 }
