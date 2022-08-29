@@ -28,7 +28,7 @@ func Power(b float64, n int) float64 {
 		if n&1 == 1 {
 			res *= b
 		}
-		b *= b
+		b *= b //x^(2^i) = ((x^2)^2)^2
 		n >>= 1
 	}
 	return res
