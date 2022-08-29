@@ -10,29 +10,22 @@ package jz
      4       7
 */
 
-func HasSubtree(pRoot1 *TreeNode, pRoot2 *TreeNode) bool {
-	if pRoot1 == nil || pRoot2 == nil {
+func isSubStructure(A *TreeNode, B *TreeNode) bool {
+	if A == nil || B == nil {
 		return false
 	}
-	if IsSame(pRoot1, pRoot2) {
-		return true
-	}
-
-	return HasSubtree(pRoot1.Left, pRoot2) || HasSubtree(pRoot1.Right, pRoot2)
+	return isSub(A, B) || isSubStructure(A.Left, B) || isSubStructure(A.Right, B)
 }
 
-func IsSame(root1, root2 *TreeNode) bool {
-	left, right := true, true
-	//因为是以root2的结构进行的递归，所以一旦root1为空，或者两者值不相等，那么一定
-	//没有相同的结构
+//判断root2是不是root1的子结构。root1和root2不能同时为nil
+func isSub(root1, root2 *TreeNode) bool {
+	//说明root2树已经匹配完成，满足子结构
+	if root2 == nil {
+		return true
+	}
+	//root2不为空，root1为空或者两者值不相等，说明不是子结构
 	if root1 == nil || root1.Val != root2.Val {
 		return false
 	}
-	if root2.Left != nil {
-		left = IsSame(root1.Left, root2.Left)
-	}
-	if root2.Right != nil {
-		right = IsSame(root1.Right, root2.Right)
-	}
-	return left && right
+	return isSub(root1.Left, root2.Left) && isSub(root1.Right, root2.Right)
 }
