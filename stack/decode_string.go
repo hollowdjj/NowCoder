@@ -2,7 +2,6 @@ package stack
 
 import (
 	"strings"
-	"unicode"
 )
 
 /*
@@ -12,41 +11,35 @@ import (
 */
 
 func DecodeString(s string) string {
-	var str string
-	number := 0
-	builder := strings.Builder{}
-	n := len(s)
-	for i := 0; i < n; i++ {
-		c := rune(s[i])
-		if unicode.IsDigit(c) {
-			//一旦遇到数字，那么循环得到完整的数字
-			number = number*10 + int(c-'0')
-		}
-		if c == '[' {
-			//一直往后找到匹配的右括号
-			count := 1
-			j := i + 1
-			for count > 0 {
-				if s[j] == '[' {
+	i, n := 0, len(s)
+	res := ""
+	for ; i < n; i++ {
+		if s[i] <= '9' && s[i] >= '0' {
+			num := 0
+			//找到完整数字
+			for ; i < n && s[i] != '['; i++ {
+				num = num*10 + int(s[i]-'0')
+			}
+			//递归求解括号内的字符串
+			count := 0
+			left := i + 1
+			for ; i < n; i++ {
+				if s[i] == '[' {
 					count++
-				} else if s[j] == ']' {
+				} else if s[i] == ']' {
 					count--
 				}
-				j++
+				if count == 0 {
+					break
+				}
 			}
-			str = DecodeString(s[i+1 : j-1])
-			i = j - 1
-		}
-		if !unicode.IsDigit(c) || i == n-1 {
-			if number != 0 {
-				str = strings.Repeat(str, number)
-				builder.WriteString(str)
-			} else {
-				builder.WriteRune(c)
-			}
-			number = 0
-			str = ""
+			//fmt.Println(num)
+			str := DecodeString(s[left:i])
+			//fmt.Println(str)
+			res += strings.Repeat(str, num)
+		} else {
+			res += string(s[i])
 		}
 	}
-	return builder.String()
+	return res
 }
